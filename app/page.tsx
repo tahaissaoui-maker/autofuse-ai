@@ -281,7 +281,7 @@ const MissedMoneySection: React.FC = () => {
               </p>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
-              Your missed calls are expensive.
+              Your missed calls are expensive
             </h2>
             <p className="mx-auto text-base md:text-lg text-slate-400 leading-relaxed">
               Every time the phone rings and goes to voicemail, you lose money. Calculate exactly how much revenue leaks out of your business every month below.
@@ -368,7 +368,7 @@ const ServicesSplitSection: React.FC = () => {
         <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="text-center mb-12 md:mb-20 space-y-6">
-               <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">Total Voice Coverage.</h2>
+               <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">Total Voice Coverage</h2>
                <p className="text-slate-400 text-base md:text-lg max-w-3xl mx-auto">
                    Most agencies only do one. We build complete voice autonomy for your business.
                </p>
@@ -485,7 +485,7 @@ const LiveDemoSection: React.FC = () => {
               </p>
             </div>
             <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-white">
-              Experience the speed.
+              Experience the speed
             </h2>
             <p className="mx-auto text-base md:text-lg text-slate-400 leading-relaxed">
               Don't just take our word for it. Enter your number below. Our AI will call you immediately. It sounds human, acts fast, and doesn't take breaks.
@@ -735,7 +735,7 @@ const ProcessSection: React.FC = () => {
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 gap-6 md:gap-8">
                 <div className="max-w-2xl">
                     <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4 md:mb-6">
-                        Simple Integration.
+                        Simple Integration
                     </h2>
                     <p className="text-slate-400 text-base md:text-lg">
                         We handle the technical heavy lifting. You just enjoy the extra capacity.
