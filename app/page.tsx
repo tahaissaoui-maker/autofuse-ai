@@ -809,21 +809,35 @@ const FinalCTASection: React.FC = () => {
 const SiteFooter: React.FC = () => {
   return (
     <footer className="border-t border-white/5 bg-black py-8 md:py-12">
-      <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center justify-between gap-6 px-4 sm:flex-row sm:px-6 lg:px-8">
-        <div className="flex items-center gap-3">
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+          <div className="flex items-center gap-3">
             <div className="flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-purple-500 to-blue-500">
-                 <Phone className="h-3 w-3 md:h-4 md:w-4 text-white" />
+              <Phone className="h-3 w-3 md:h-4 md:w-4 text-white" />
             </div>
-            <span className="text-sm md:text-base font-bold text-slate-200">AutoFuse AI</span>
+            <span className="text-sm md:text-base font-bold text-slate-200">
+              AutoFuse AI
+            </span>
+          </div>
+
+          <div className="flex gap-6 text-sm font-medium text-slate-400">
+            <a href="/privacy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </a>
+            <a href="/terms" className="hover:text-white transition-colors">
+              Terms of Service
+            </a>
+          </div>
         </div>
-        <div className="text-xs md:text-sm text-slate-600">
-          © {new Date().getFullYear()} AutoFuse AI. All rights reserved.
+
+        <div className="mt-8 border-t border-white/5 pt-8 text-center text-xs text-slate-600">
+          <p>© {new Date().getFullYear()} Aleekto Ltd t/a AutoFuse AI. All rights reserved.</p>
+          <p className="mt-2">71-75 Shelton Street, Covent Garden, London, WC2H 9JQ</p>
         </div>
       </div>
     </footer>
   );
 };
-
 const CursorGlow: React.FC = () => {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   useEffect(() => {
