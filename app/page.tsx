@@ -589,7 +589,6 @@ const LiveDemoSection: React.FC = () => {
 };
 
 import Image from "next/image"; // Keep this
-import { Play, Pause, ArrowUpRight } from "lucide-react"; // Added ArrowUpRight for a 'tech' feel
 
 const CaseStudiesSection: React.FC = () => {
   const outcomes = [
