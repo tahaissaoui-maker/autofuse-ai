@@ -588,116 +588,130 @@ const LiveDemoSection: React.FC = () => {
   );
 };
 
+import Image from "next/image"; // <--- Make sure this is at the very top of your file
+
 const CaseStudiesSection: React.FC = () => {
   const cases = [
     {
       company: "Cornerstone",
-      subline: "Property Solutions",
+      logo: "/logos/cornerstone.webp", // Updated to .webp
+      owner: "Jordon Good",
       description: "Implemented a 24/7 inbound wizard that screens tenants and books viewings automatically.",
-      tags: ["Property Mgmt", "Inbound"],
-      metric: "Zero Missed Calls & 100% Capture",
+      metric: "100% Lead Capture",
+      subMetric: "Zero missed calls",
       metricColor: "text-emerald-400",
-      bannerGradient: "from-emerald-900 to-green-900",
-      bannerText: "text-emerald-100",
       audio: "/audio/cornerstone.mp3"
     },
     {
       company: "NC Homebuyers",
-      subline: "LLC",
+      logo: "/logos/nc-homebuyers.webp",
+      owner: "Kevin Ramirez",
       description: "Automated lead qualification for real estate investors. Filters motivated sellers from the noise.",
-      tags: ["Real Estate", "Qualifying"],
-      metric: "30% Increase in Deal Flow",
+      metric: "+30% Deal Flow",
+      subMetric: " consistently month-over-month",
       metricColor: "text-blue-400",
-      bannerGradient: "from-blue-900 to-indigo-900",
-      bannerText: "text-blue-100",
       audio: "/audio/nc-homebuyers.mp3"
     },
     {
       company: "Cooper Roofing",
-      subline: "Ltd.",
+      logo: "/logos/cooper.webp",
+      owner: "Shane Cooper",
       description: "Recovered dormant leads by calling past inquiries. Filled the calendar during slow season.",
-      tags: ["Roofing", "Reactivation"],
-      metric: "20+ New Site Visits Per Month",
+      metric: "20+ Site Visits",
+      subMetric: "booked completely on autopilot",
       metricColor: "text-amber-400",
-      bannerGradient: "from-amber-900 to-orange-900",
-      bannerText: "text-amber-100",
       audio: "/audio/cooper.mp3"
     },
     {
-      company: "Grey Street",
-      subline: "Dentist Pty Ltd",
+      company: "Grey Street Dentist",
+      logo: "/logos/grey-street.webp",
+      owner: "Dr. Hyun Soo Yu",
       description: "Virtual dental receptionist that books appointments and answers FAQs while staff is busy.",
-      tags: ["Dental", "Receptionist"],
-      metric: "30+ Hours Saved Monthly",
+      metric: "30+ Hours Saved",
+      subMetric: "monthly for front-desk staff",
       metricColor: "text-purple-400",
-      bannerGradient: "from-purple-900 to-fuchsia-900",
-      bannerText: "text-purple-100",
       audio: "/audio/grey-street.mp3"
     }
   ];
 
   return (
-    <section id="case-studies" className="relative bg-[#0a0a0a] py-12 md:py-32">
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+    <section id="case-studies" className="relative bg-[#050505] py-20 md:py-32 overflow-hidden">
+      {/* Subtle Background Glows */}
+      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 relative z-10">
         <Reveal>
-          <div className="mb-12 md:mb-20 text-center md:text-left">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
-              Our Success Stories
+          <div className="mb-16 md:mb-24 text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-slate-300 mb-6">
+              <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
+              <span>Proven Results</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
+              Real Businesses. <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+                Real Revenue.
+              </span>
             </h2>
-            <div className="h-1.5 w-24 bg-purple-500 mt-6 rounded-full mx-auto md:mx-0" />
-            <p className="mt-6 md:mt-8 text-slate-400 text-base md:text-lg max-w-3xl">
-                Real businesses using Voice AI to save hours and unlock new revenue.
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+                Listen to the actual agents we built for these business owners.
             </p>
           </div>
         </Reveal>
 
-        <div className="grid gap-8 md:gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
           {cases.map((item, index) => (
             <Reveal key={item.company} delay={index * 100}>
-              <div className="group relative flex flex-col overflow-hidden rounded-[24px] md:rounded-[32px] border border-white/10 bg-[#0e0e0e] hover:border-white/20 transition-all duration-300">
+              <div className="group relative flex flex-col h-full rounded-3xl border border-white/10 bg-[#0A0A0A] hover:border-purple-500/30 hover:shadow-[0_0_30px_rgba(147,51,234,0.1)] transition-all duration-500 overflow-hidden">
                 
-                <div className={`relative h-32 md:h-40 w-full bg-gradient-to-r ${item.bannerGradient} flex flex-col items-center justify-center p-6 md:p-8 text-center`}>
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1),_transparent)] opacity-40" />
-                    
-                    <div className="relative z-10">
-                        <h3 className={`text-2xl md:text-3xl font-serif font-bold ${item.bannerText} tracking-tight`}>
-                            {item.company}
-                        </h3>
-                        {item.subline && (
-                            <p className={`text-xs uppercase tracking-widest ${item.bannerText} opacity-70 mt-1 md:mt-2`}>
-                                {item.subline}
-                            </p>
-                        )}
-                    </div>
-                </div>
-
-                <div className="flex flex-col flex-1 p-6 md:p-8 space-y-5 md:space-y-6">
-                    
-                    <div>
-                        <div className="flex items-center justify-between mb-2">
-                            <h4 className="text-lg font-bold text-white">{item.company}</h4>
-                        </div>
-                        <p className="text-slate-400 text-sm leading-relaxed line-clamp-3">
-                            {item.description}
-                        </p>
+                {/* 1. Header: Logo & Metric */}
+                <div className="p-6 md:p-8 space-y-6 flex-1">
+                    {/* Logo Container - Optimized with Next/Image */}
+                    <div className="relative h-12 w-full flex items-center justify-start opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500">
+                        <Image 
+                           src={item.logo} 
+                           alt={`${item.company} Logo`} 
+                           width={160} // Explicit width prevents layout shift
+                           height={48} // Explicit height matches h-12
+                           className="object-contain object-left h-full w-auto"
+                        />
                     </div>
 
-                    <div className="flex flex-wrap gap-2">
-                        {item.tags.map(tag => (
-                            <span key={tag} className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] font-medium text-slate-300">
-                                {tag}
-                            </span>
-                        ))}
-                    </div>
-
-                    <AudioPlayer src={item.audio} />
-
-                    <div className="pt-2 border-t border-white/5">
-                        <p className={`text-base font-bold ${item.metricColor}`}>
+                    <div className="space-y-2">
+                        <h3 className={`text-3xl font-bold ${item.metricColor} tracking-tight`}>
                             {item.metric}
+                        </h3>
+                        <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+                            {item.subMetric}
                         </p>
                     </div>
+
+                    <p className="text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-6">
+                        "{item.description}"
+                    </p>
                 </div>
+
+                {/* 2. Audio Section */}
+                <div className="px-6 pb-2">
+                     <AudioPlayer src={item.audio} />
+                </div>
+
+                {/* 3. Verified Owner Footer */}
+                <div className="p-6 mt-2 flex items-center gap-3 border-t border-white/5 bg-white/[0.02]">
+                    <div className="h-8 w-8 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center text-xs font-bold text-white ring-1 ring-white/10 shrink-0">
+                        {item.owner.charAt(0)}
+                    </div>
+                    <div className="flex flex-col min-w-0">
+                        <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5 truncate">
+                            {item.owner}
+                            <CheckCircle className="h-3 w-3 text-blue-500 fill-blue-500/20 shrink-0" />
+                        </span>
+                        <span className="text-[10px] text-slate-500 uppercase tracking-wide truncate">
+                            {item.company}
+                        </span>
+                    </div>
+                </div>
+
               </div>
             </Reveal>
           ))}
