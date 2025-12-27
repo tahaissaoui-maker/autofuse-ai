@@ -589,7 +589,6 @@ const LiveDemoSection: React.FC = () => {
 };
 
 import Image from "next/image";
-import { Play, Pause } from "lucide-react"; // Make sure these are imported
 
 const CaseStudiesSection: React.FC = () => {
   const outcomes = [
