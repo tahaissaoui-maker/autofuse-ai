@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef, FormEvent } from "react";
+import Image from "next/image"; // <--- This was missing!
 import { 
   Phone, 
   PhoneIncoming, 
@@ -9,6 +10,7 @@ import {
   Star, 
   CheckCircle, 
   ArrowRight, 
+  ArrowUpRight, // <--- This is required for the new design
   Play,
   Pause,
   Landmark, 
@@ -587,8 +589,6 @@ const LiveDemoSection: React.FC = () => {
     </section>
   );
 };
-
-import Image from "next/image"; // Keep this
 
 const CaseStudiesSection: React.FC = () => {
   const outcomes = [
