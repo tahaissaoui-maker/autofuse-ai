@@ -588,136 +588,179 @@ const LiveDemoSection: React.FC = () => {
   );
 };
 
-import Image from "next/image"; // <--- Make sure this is at the very top of your file
+import Image from "next/image";
+import { Play, Pause } from "lucide-react"; // Make sure these are imported
 
 const CaseStudiesSection: React.FC = () => {
-  const cases = [
+  const outcomes = [
+    {
+      company: "Cooper Roofing",
+      logo: "/logos/cooper.webp",
+      metric: "3 Jobs Booked",
+      timeframe: "In Week One",
+      context: "2 REPAIRS + 1 FULL REPLACEMENT — $2.40 TOTAL COST",
+      tag: "AI RECEPTIONIST",
+      audio: "/audio/cooper.mp3",
+      gradient: "from-orange-500/20 to-amber-500/5"
+    },
     {
       company: "Cornerstone",
-      logo: "/logos/cornerstone.webp", // Updated to .webp
-      owner: "Jordon Good",
-      description: "Implemented a 24/7 inbound wizard that screens tenants and books viewings automatically.",
-      metric: "100% Lead Capture",
-      subMetric: "Zero missed calls",
-      metricColor: "text-emerald-400",
-      audio: "/audio/cornerstone.mp3"
+      logo: "/logos/cornerstone.webp",
+      metric: "6 New Leases",
+      timeframe: "In 30 Days",
+      context: "FROM AFTER-HOURS CALLS THAT USED TO HIT VOICEMAIL",
+      tag: "LEASING AGENT",
+      audio: "/audio/cornerstone.mp3",
+      gradient: "from-emerald-500/20 to-green-500/5"
     },
     {
       company: "NC Homebuyers",
       logo: "/logos/nc-homebuyers.webp",
-      owner: "Kevin Ramirez",
-      description: "Automated lead qualification for real estate investors. Filters motivated sellers from the noise.",
-      metric: "+30% Deal Flow",
-      subMetric: " consistently month-over-month",
-      metricColor: "text-blue-400",
-      audio: "/audio/nc-homebuyers.mp3"
-    },
-    {
-      company: "Cooper Roofing",
-      logo: "/logos/cooper.webp",
-      owner: "Shane Cooper",
-      description: "Recovered dormant leads by calling past inquiries. Filled the calendar during slow season.",
-      metric: "20+ Site Visits",
-      subMetric: "booked completely on autopilot",
-      metricColor: "text-amber-400",
-      audio: "/audio/cooper.mp3"
+      metric: "41 Sellers",
+      timeframe: "Qualified",
+      context: "FILTERED FROM 200+ INBOUND LEADS IN 60 DAYS",
+      tag: "ACQUISITIONS MGR",
+      audio: "/audio/nc-homebuyers.mp3",
+      gradient: "from-blue-500/20 to-indigo-500/5"
     },
     {
       company: "Grey Street Dentist",
       logo: "/logos/grey-street.webp",
-      owner: "Dr. Hyun Soo Yu",
-      description: "Virtual dental receptionist that books appointments and answers FAQs while staff is busy.",
-      metric: "30+ Hours Saved",
-      subMetric: "monthly for front-desk staff",
-      metricColor: "text-purple-400",
-      audio: "/audio/grey-street.mp3"
+      metric: "94% Answered",
+      timeframe: "Up From 67%",
+      context: "28 NEW PATIENTS BOOKED DIRECTLY IN FIRST MONTH",
+      tag: "DENTAL RECEPTION",
+      audio: "/audio/grey-street.mp3",
+      gradient: "from-purple-500/20 to-pink-500/5"
     }
   ];
 
   return (
-    <section id="case-studies" className="relative bg-[#050505] py-20 md:py-32 overflow-hidden">
-      {/* Subtle Background Glows */}
-      <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none" />
-
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 relative z-10">
+    <section id="case-studies" className="relative bg-[#050505] py-24 md:py-32">
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        
+        {/* Section Header */}
         <Reveal>
-          <div className="mb-16 md:mb-24 text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-slate-300 mb-6">
-              <Star className="h-3 w-3 text-yellow-400 fill-yellow-400" />
-              <span>Proven Results</span>
+          <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12">
+            <div className="max-w-3xl">
+              <h2 className="text-4xl md:text-7xl font-bold text-white tracking-tighter leading-[0.9]">
+                OUTCOMES <br />
+                <span className="text-slate-500">NOT PROMISES.</span>
+              </h2>
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
-              Real Businesses. <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
-                Real Revenue.
-              </span>
-            </h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-                Listen to the actual agents we built for these business owners.
-            </p>
+            <div className="text-right hidden md:block">
+              <p className="text-sm font-mono text-slate-400 uppercase tracking-widest">
+                VERIFIED PERFORMANCE DATA <br />
+                Q4 2025
+              </p>
+            </div>
           </div>
         </Reveal>
 
-        <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {cases.map((item, index) => (
+        {/* The Results Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {outcomes.map((item, index) => (
             <Reveal key={item.company} delay={index * 100}>
-              <div className="group relative flex flex-col h-full rounded-3xl border border-white/10 bg-[#0A0A0A] hover:border-purple-500/30 hover:shadow-[0_0_30px_rgba(147,51,234,0.1)] transition-all duration-500 overflow-hidden">
+              <div className="group relative overflow-hidden rounded-[2rem] bg-[#0A0A0A] border border-white/10 hover:border-white/20 transition-all duration-500 h-full flex flex-col">
                 
-                {/* 1. Header: Logo & Metric */}
-                <div className="p-6 md:p-8 space-y-6 flex-1">
-                    {/* Logo Container - Optimized with Next/Image */}
-                    <div className="relative h-12 w-full flex items-center justify-start opacity-90 grayscale group-hover:grayscale-0 transition-all duration-500">
-                        <Image 
+                {/* Hover Gradient Background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
+
+                <div className="relative z-10 p-8 md:p-10 flex flex-col h-full">
+                  
+                  {/* Top Row: Logo & Tag */}
+                  <div className="flex items-start justify-between mb-8 md:mb-12">
+                    <div className="relative h-8 w-32 opacity-70 group-hover:opacity-100 transition-opacity">
+                       <Image 
                            src={item.logo} 
                            alt={`${item.company} Logo`} 
-                           width={160} // Explicit width prevents layout shift
-                           height={48} // Explicit height matches h-12
-                           className="object-contain object-left h-full w-auto"
+                           width={120} 
+                           height={40} 
+                           className="object-contain object-left"
                         />
                     </div>
+                    <span className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] md:text-xs font-mono font-medium text-slate-400 uppercase tracking-wider">
+                      {item.tag}
+                    </span>
+                  </div>
 
-                    <div className="space-y-2">
-                        <h3 className={`text-3xl font-bold ${item.metricColor} tracking-tight`}>
-                            {item.metric}
-                        </h3>
-                        <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">
-                            {item.subMetric}
-                        </p>
-                    </div>
-
-                    <p className="text-slate-400 text-sm leading-relaxed border-t border-white/5 pt-6">
-                        "{item.description}"
+                  {/* Main Metric - The "Punch" */}
+                  <div className="space-y-1 mb-8">
+                    <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
+                      {item.metric}
+                    </h3>
+                    <p className="text-xl md:text-2xl text-slate-500 font-medium">
+                      {item.timeframe}
                     </p>
-                </div>
+                  </div>
 
-                {/* 2. Audio Section */}
-                <div className="px-6 pb-2">
-                     <AudioPlayer src={item.audio} />
-                </div>
+                  <div className="mt-auto space-y-8">
+                    {/* Divider Line */}
+                    <div className="w-full h-px bg-white/10 group-hover:bg-white/20 transition-colors" />
 
-                {/* 3. Verified Owner Footer */}
-                <div className="p-6 mt-2 flex items-center gap-3 border-t border-white/5 bg-white/[0.02]">
-                    <div className="h-8 w-8 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center text-xs font-bold text-white ring-1 ring-white/10 shrink-0">
-                        {item.owner.charAt(0)}
+                    {/* The "Context" Subtext */}
+                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                        <p className="text-xs md:text-sm font-mono text-slate-300 max-w-sm leading-relaxed uppercase tracking-wide">
+                          {item.context}
+                        </p>
+                        
+                        {/* Minimalist Audio Player */}
+                        <div className="shrink-0">
+                           <OutcomeAudioPlayer src={item.audio} />
+                        </div>
                     </div>
-                    <div className="flex flex-col min-w-0">
-                        <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5 truncate">
-                            {item.owner}
-                            <CheckCircle className="h-3 w-3 text-blue-500 fill-blue-500/20 shrink-0" />
-                        </span>
-                        <span className="text-[10px] text-slate-500 uppercase tracking-wide truncate">
-                            {item.company}
-                        </span>
-                    </div>
-                </div>
+                  </div>
 
+                </div>
               </div>
             </Reveal>
           ))}
         </div>
       </div>
     </section>
+  );
+};
+
+// --- NEW MINIMALIST AUDIO PLAYER FOR OUTCOMES ---
+const OutcomeAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const handleEnded = () => setIsPlaying(false);
+    audio.addEventListener("ended", handleEnded);
+    return () => audio.removeEventListener("ended", handleEnded);
+  }, []);
+
+  return (
+    <button 
+      onClick={togglePlay}
+      className="group/btn flex items-center gap-3 pr-4 pl-1 py-1 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
+    >
+      <div className="h-8 w-8 rounded-full bg-white text-black flex items-center justify-center shrink-0">
+        {isPlaying ? (
+          <Pause className="h-3 w-3 fill-black" />
+        ) : (
+          <Play className="h-3 w-3 fill-black ml-0.5" />
+        )}
+      </div>
+      <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest group-hover/btn:text-white transition-colors">
+        {isPlaying ? "Playing..." : "Hear Agent"}
+      </span>
+      <audio ref={audioRef} src={src} preload="none" />
+    </button>
   );
 };
 
