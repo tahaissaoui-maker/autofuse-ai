@@ -588,129 +588,120 @@ const LiveDemoSection: React.FC = () => {
   );
 };
 
-import Image from "next/image";
+import Image from "next/image"; // Keep this
+import { Play, Pause, ArrowUpRight } from "lucide-react"; // Added ArrowUpRight for a 'tech' feel
 
 const CaseStudiesSection: React.FC = () => {
   const outcomes = [
     {
       company: "Cooper Roofing",
       logo: "/logos/cooper.webp",
-      metric: "3 Jobs Booked",
-      timeframe: "In Week One",
-      context: "2 REPAIRS + 1 FULL REPLACEMENT — $2.40 TOTAL COST",
-      tag: "AI RECEPTIONIST",
+      metric: "3 Jobs",
+      suffix: "Booked",
+      timeframe: "Week 1",
+      context: "2 Repairs + 1 Full Replacement",
+      cost: "$2.40 cost per booking",
       audio: "/audio/cooper.mp3",
-      gradient: "from-orange-500/20 to-amber-500/5"
     },
     {
       company: "Cornerstone",
       logo: "/logos/cornerstone.webp",
-      metric: "6 New Leases",
-      timeframe: "In 30 Days",
-      context: "FROM AFTER-HOURS CALLS THAT USED TO HIT VOICEMAIL",
-      tag: "LEASING AGENT",
+      metric: "6 Leases",
+      suffix: "Signed",
+      timeframe: "30 Days",
+      context: "From after-hours voicemail calls",
+      cost: "Zero staff overtime",
       audio: "/audio/cornerstone.mp3",
-      gradient: "from-emerald-500/20 to-green-500/5"
     },
     {
       company: "NC Homebuyers",
       logo: "/logos/nc-homebuyers.webp",
       metric: "41 Sellers",
-      timeframe: "Qualified",
-      context: "FILTERED FROM 200+ INBOUND LEADS IN 60 DAYS",
-      tag: "ACQUISITIONS MGR",
+      suffix: "Qualified",
+      timeframe: "60 Days",
+      context: "Filtered from 200+ inbound leads",
+      cost: "2 wholesale deals closed",
       audio: "/audio/nc-homebuyers.mp3",
-      gradient: "from-blue-500/20 to-indigo-500/5"
     },
     {
       company: "Grey Street Dentist",
       logo: "/logos/grey-street.webp",
-      metric: "94% Answered",
-      timeframe: "Up From 67%",
-      context: "28 NEW PATIENTS BOOKED DIRECTLY IN FIRST MONTH",
-      tag: "DENTAL RECEPTION",
+      metric: "94%",
+      suffix: "Answer Rate",
+      timeframe: "Month 1",
+      context: "Up from 67% missed calls",
+      cost: "28 new patients added",
       audio: "/audio/grey-street.mp3",
-      gradient: "from-purple-500/20 to-pink-500/5"
     }
   ];
 
   return (
-    <section id="case-studies" className="relative bg-[#050505] py-24 md:py-32">
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+    <section id="case-studies" className="relative bg-[#050505] py-24 md:py-32 overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-[#050505] to-[#050505] pointer-events-none" />
+
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
         <Reveal>
-          <div className="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12">
-            <div className="max-w-3xl">
-              <h2 className="text-4xl md:text-7xl font-bold text-white tracking-tighter leading-[0.9]">
-                OUTCOMES <br />
-                <span className="text-slate-500">NOT PROMISES.</span>
-              </h2>
-            </div>
-            <div className="text-right hidden md:block">
-              <p className="text-sm font-mono text-slate-400 uppercase tracking-widest">
-                VERIFIED PERFORMANCE DATA <br />
-                Q4 2025
-              </p>
-            </div>
+          <div className="mb-20 text-center space-y-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
+              Verified Outcomes
+            </h2>
+            <p className="text-slate-500 max-w-2xl mx-auto text-lg">
+              We don't sell "AI". We sell calendar bookings and signed contracts.
+            </p>
           </div>
         </Reveal>
 
-        {/* The Results Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {outcomes.map((item, index) => (
             <Reveal key={item.company} delay={index * 100}>
-              <div className="group relative overflow-hidden rounded-[2rem] bg-[#0A0A0A] border border-white/10 hover:border-white/20 transition-all duration-500 h-full flex flex-col">
+              <div className="group relative flex flex-col justify-between h-full min-h-[320px] p-6 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.06] hover:border-purple-500/30 transition-all duration-500">
                 
-                {/* Hover Gradient Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
-
-                <div className="relative z-10 p-8 md:p-10 flex flex-col h-full">
-                  
-                  {/* Top Row: Logo & Tag */}
-                  <div className="flex items-start justify-between mb-8 md:mb-12">
-                    <div className="relative h-8 w-32 opacity-70 group-hover:opacity-100 transition-opacity">
-                       <Image 
-                           src={item.logo} 
-                           alt={`${item.company} Logo`} 
-                           width={120} 
-                           height={40} 
-                           className="object-contain object-left"
-                        />
-                    </div>
-                    <span className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] md:text-xs font-mono font-medium text-slate-400 uppercase tracking-wider">
-                      {item.tag}
-                    </span>
+                {/* Top: Logo & Tag */}
+                <div className="flex justify-between items-start mb-8">
+                  <div className="relative h-8 w-24 opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                     <Image 
+                         src={item.logo} 
+                         alt={item.company} 
+                         fill
+                         className="object-contain object-left"
+                      />
                   </div>
+                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 group-hover:border-purple-500/50 group-hover:bg-purple-500/10 transition-colors">
+                    <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-purple-400" />
+                  </div>
+                </div>
 
-                  {/* Main Metric - The "Punch" */}
-                  <div className="space-y-1 mb-8">
-                    <h3 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
-                      {item.metric}
-                    </h3>
-                    <p className="text-xl md:text-2xl text-slate-500 font-medium">
-                      {item.timeframe}
+                {/* Middle: The BIG Number */}
+                <div className="space-y-1 mb-8">
+                  <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400 group-hover:from-white group-hover:to-white transition-all">
+                    {item.metric}
+                  </div>
+                  <div className="text-sm font-medium text-purple-400 uppercase tracking-wider">
+                    {item.suffix}
+                  </div>
+                  <div className="text-xs text-slate-500 font-mono mt-1">
+                    — {item.timeframe}
+                  </div>
+                </div>
+
+                {/* Bottom: Context & Audio */}
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <p className="text-sm text-slate-300 leading-snug">
+                      {item.context}
+                    </p>
+                    <p className="text-xs text-slate-500 border-l-2 border-white/10 pl-3">
+                      {item.cost}
                     </p>
                   </div>
 
-                  <div className="mt-auto space-y-8">
-                    {/* Divider Line */}
-                    <div className="w-full h-px bg-white/10 group-hover:bg-white/20 transition-colors" />
-
-                    {/* The "Context" Subtext */}
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                        <p className="text-xs md:text-sm font-mono text-slate-300 max-w-sm leading-relaxed uppercase tracking-wide">
-                          {item.context}
-                        </p>
-                        
-                        {/* Minimalist Audio Player */}
-                        <div className="shrink-0">
-                           <OutcomeAudioPlayer src={item.audio} />
-                        </div>
-                    </div>
+                  <div className="pt-4 border-t border-white/5">
+                    <MinimalAudioPlayer src={item.audio} />
                   </div>
-
                 </div>
+
               </div>
             </Reveal>
           ))}
@@ -720,8 +711,8 @@ const CaseStudiesSection: React.FC = () => {
   );
 };
 
-// --- NEW MINIMALIST AUDIO PLAYER FOR OUTCOMES ---
-const OutcomeAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
+// --- Minimalist & Sleek Audio Player ---
+const MinimalAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -746,18 +737,31 @@ const OutcomeAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
   return (
     <button 
       onClick={togglePlay}
-      className="group/btn flex items-center gap-3 pr-4 pl-1 py-1 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
+      className="w-full flex items-center justify-between group/audio p-2 rounded-xl bg-black/40 border border-white/5 hover:border-purple-500/30 transition-all"
     >
-      <div className="h-8 w-8 rounded-full bg-white text-black flex items-center justify-center shrink-0">
-        {isPlaying ? (
-          <Pause className="h-3 w-3 fill-black" />
-        ) : (
-          <Play className="h-3 w-3 fill-black ml-0.5" />
-        )}
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white text-black shrink-0">
+          {isPlaying ? (
+            <Pause className="w-3 h-3 fill-current" />
+          ) : (
+            <Play className="w-3 h-3 fill-current ml-0.5" />
+          )}
+        </div>
+        <span className="text-xs font-semibold text-slate-400 group-hover/audio:text-white transition-colors">
+          {isPlaying ? "Listening..." : "Hear the Agent"}
+        </span>
       </div>
-      <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest group-hover/btn:text-white transition-colors">
-        {isPlaying ? "Playing..." : "Hear Agent"}
-      </span>
+      
+      {/* Visual Waveform Effect */}
+      <div className="flex gap-0.5 items-center h-3 mr-2 opacity-50 group-hover/audio:opacity-100 transition-opacity">
+        {[...Array(6)].map((_, i) => (
+          <div 
+            key={i} 
+            className={`w-0.5 rounded-full bg-purple-500 transition-all duration-300 ${isPlaying ? 'animate-voice-wave' : 'h-1.5'}`}
+            style={{ animationDelay: `${i * 0.1}s` }}
+          />
+        ))}
+      </div>
       <audio ref={audioRef} src={src} preload="none" />
     </button>
   );
