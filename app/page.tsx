@@ -861,7 +861,7 @@ const FounderSection: React.FC = () => {
                 {/* PLACEHOLDER: Replace src with "/taha.jpg" once uploaded */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
                 <Image 
-                  src="/taha.jpg" // <--- Make sure to upload your photo!
+                  src="/taha.webp" // <--- Make sure to upload your photo!
                   alt="Taha - Founder of AutoFuse AI"
                   fill
                   className="object-cover"
