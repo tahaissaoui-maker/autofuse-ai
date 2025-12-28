@@ -1,7 +1,5 @@
 "use client";
 
-import React, { useEffect, useState, useRef, FormEvent } from "react";
-import Image from "next/image"; // <--- This was missing!
 import { 
   Phone, 
   PhoneIncoming, 
@@ -9,8 +7,11 @@ import {
   Activity, 
   Star, 
   CheckCircle, 
+  CheckCircle2, // New
   ArrowRight, 
-  ArrowUpRight, // <--- This is required for the new design
+  ArrowUpRight, 
+  TrendingUp,   // New
+  User,         // New
   Play,
   Pause,
   Landmark, 
@@ -589,18 +590,6 @@ const LiveDemoSection: React.FC = () => {
     </section>
   );
 };
-
-// --- Imports (Ensure these are at the top) ---
-import Image from "next/image";
-import { 
-  Play, 
-  Pause, 
-  ArrowRight, 
-  CheckCircle2, 
-  TrendingUp,
-  Activity,
-  User
-} from "lucide-react";
 
 // --- The Main Section Component ---
 const CaseStudiesSection: React.FC = () => {
