@@ -713,6 +713,62 @@ const CaseStudiesSection: React.FC = () => {
   );
 };
 
+// --- Minimalist & Sleek Audio Player ---
+const MinimalAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const handleEnded = () => setIsPlaying(false);
+    audio.addEventListener("ended", handleEnded);
+    return () => audio.removeEventListener("ended", handleEnded);
+  }, []);
+
+  return (
+    <button 
+      onClick={togglePlay}
+      className="w-full flex items-center justify-between group/audio p-2 rounded-xl bg-black/40 border border-white/5 hover:border-purple-500/30 transition-all"
+    >
+      <div className="flex items-center gap-3">
+        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white text-black shrink-0">
+          {isPlaying ? (
+            <Pause className="w-3 h-3 fill-current" />
+          ) : (
+            <Play className="w-3 h-3 fill-current ml-0.5" />
+          )}
+        </div>
+        <span className="text-xs font-semibold text-slate-400 group-hover/audio:text-white transition-colors">
+          {isPlaying ? "Listening..." : "Hear the Agent"}
+        </span>
+      </div>
+      
+      {/* Visual Waveform Effect */}
+      <div className="flex gap-0.5 items-center h-3 mr-2 opacity-50 group-hover/audio:opacity-100 transition-opacity">
+        {[...Array(6)].map((_, i) => (
+          <div 
+            key={i} 
+            className={`w-0.5 rounded-full bg-purple-500 transition-all duration-300 ${isPlaying ? 'animate-voice-wave' : 'h-1.5'}`}
+            style={{ animationDelay: `${i * 0.1}s` }}
+          />
+        ))}
+      </div>
+      <audio ref={audioRef} src={src} preload="none" />
+    </button>
+  );
+};
+
 const ProcessSection: React.FC = () => {
   const steps = [
     {
