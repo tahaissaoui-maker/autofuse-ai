@@ -655,20 +655,23 @@ const CaseStudiesSection: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {outcomes.map((item, index) => (
             <Reveal key={item.company} delay={index * 100}>
-              <div className="group relative flex flex-col justify-between h-full min-h-[320px] p-6 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.06] hover:border-purple-500/30 transition-all duration-500">
+              <div className="group relative flex flex-col justify-between h-full min-h-[360px] p-6 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.06] hover:border-purple-500/30 transition-all duration-500">
                 
-                {/* Top: Logo & Tag */}
-                <div className="flex justify-between items-start mb-8">
-                  <div className="relative h-8 w-24 opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
+                {/* Floating Tech Arrow (Absolute Position) */}
+                <div className="absolute top-6 right-6 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 group-hover:border-purple-500/50 group-hover:bg-purple-500/10 transition-colors z-20">
+                    <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-purple-400" />
+                </div>
+
+                {/* Top: Logo (Centered, Bigger, In Color) */}
+                <div className="relative w-full flex justify-center mb-8 mt-2">
+                  <div className="relative h-16 w-48 transition-transform duration-500 group-hover:scale-105">
                      <Image 
                          src={item.logo} 
                          alt={item.company} 
                          fill
-                         className="object-contain object-left"
+                         className="object-contain" // object-contain defaults to center
+                         priority={index < 2} // Preload the first two for speed
                       />
-                  </div>
-                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 group-hover:border-purple-500/50 group-hover:bg-purple-500/10 transition-colors">
-                    <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-purple-400" />
                   </div>
                 </div>
 
@@ -707,62 +710,6 @@ const CaseStudiesSection: React.FC = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-// --- Minimalist & Sleek Audio Player ---
-const MinimalAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
-
-  const togglePlay = () => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    const handleEnded = () => setIsPlaying(false);
-    audio.addEventListener("ended", handleEnded);
-    return () => audio.removeEventListener("ended", handleEnded);
-  }, []);
-
-  return (
-    <button 
-      onClick={togglePlay}
-      className="w-full flex items-center justify-between group/audio p-2 rounded-xl bg-black/40 border border-white/5 hover:border-purple-500/30 transition-all"
-    >
-      <div className="flex items-center gap-3">
-        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white text-black shrink-0">
-          {isPlaying ? (
-            <Pause className="w-3 h-3 fill-current" />
-          ) : (
-            <Play className="w-3 h-3 fill-current ml-0.5" />
-          )}
-        </div>
-        <span className="text-xs font-semibold text-slate-400 group-hover/audio:text-white transition-colors">
-          {isPlaying ? "Listening..." : "Hear the Agent"}
-        </span>
-      </div>
-      
-      {/* Visual Waveform Effect */}
-      <div className="flex gap-0.5 items-center h-3 mr-2 opacity-50 group-hover/audio:opacity-100 transition-opacity">
-        {[...Array(6)].map((_, i) => (
-          <div 
-            key={i} 
-            className={`w-0.5 rounded-full bg-purple-500 transition-all duration-300 ${isPlaying ? 'animate-voice-wave' : 'h-1.5'}`}
-            style={{ animationDelay: `${i * 0.1}s` }}
-          />
-        ))}
-      </div>
-      <audio ref={audioRef} src={src} preload="none" />
-    </button>
   );
 };
 
