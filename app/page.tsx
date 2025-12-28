@@ -23,7 +23,9 @@ import {
   Menu,
   X,
   Volume2,
-  MoreVertical
+  MoreVertical,
+  Trophy, 
+  User
 } from "lucide-react";
 
 export default function AutoFuseAIPage() {
@@ -838,6 +840,122 @@ const DashboardAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
       </div>
       <audio ref={audioRef} src={src} preload="none" />
     </button>
+  );
+};
+
+const FounderSection: React.FC = () => {
+  return (
+    <section className="relative bg-[#050505] py-24 md:py-32 overflow-hidden border-t border-white/5">
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          
+          {/* Left: Image & Stats */}
+          <Reveal>
+            <div className="relative">
+              {/* Background Glow */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-purple-500/20 to-blue-500/20 blur-2xl rounded-full opacity-50" />
+              
+              {/* Image Container */}
+              <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 aspect-[4/5] max-w-md mx-auto lg:mx-0">
+                {/* PLACEHOLDER: Replace src with "/taha.jpg" once uploaded */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10" />
+                <Image 
+                  src="/taha.jpg" // <--- Make sure to upload your photo!
+                  alt="Taha - Founder of AutoFuse AI"
+                  fill
+                  className="object-cover"
+                />
+                
+                {/* Floating "Verified" Card */}
+                <div className="absolute bottom-6 left-6 right-6 z-20 p-4 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/10 shadow-2xl">
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xs font-bold text-white uppercase tracking-wider">Proven Track Record</span>
+                    <div className="flex text-yellow-400 gap-0.5">
+                      <Star className="w-3 h-3 fill-current" />
+                      <Star className="w-3 h-3 fill-current" />
+                      <Star className="w-3 h-3 fill-current" />
+                      <Star className="w-3 h-3 fill-current" />
+                      <Star className="w-3 h-3 fill-current" />
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-full bg-emerald-500/20 flex items-center justify-center border border-emerald-500/30">
+                      <Trophy className="w-5 h-5 text-emerald-400" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-white">Top 1% Talent</p>
+                      <p className="text-xs text-slate-400">100% Job Success Score</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Right: The Narrative */}
+          <Reveal delay={200}>
+            <div className="space-y-8">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-blue-500/30 bg-blue-500/10 text-[10px] font-mono font-bold uppercase tracking-widest text-blue-300">
+                  <User className="w-3 h-3" />
+                  Meet The Architect
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">
+                  I don't just connect APIs. <br />
+                  <span className="text-slate-500">I engineer sales psychology.</span>
+                </h2>
+                <div className="space-y-6 text-lg text-slate-400 leading-relaxed">
+                  <p>
+                    Hi, I'm Taha. Before founding AutoFuse AI, I spent years as a <strong>Top Rated Certified Expert</strong>, helping businesses like <em>Cooper Roofing</em> and <em>Cornerstone</em> automate their most critical interactions.
+                  </p>
+                  <p>
+                    I realized that most developers treat AI like a tech problem. They obsess over the code but ignore the conversation. 
+                    <strong className="text-white"> That is a mistake.</strong>
+                  </p>
+                  <p>
+                    I build systems that understand <strong>human nuance</strong>. My agents handle interruptions naturally, counter objections with custom scripts, and feel indistinguishable from your best sales rep.
+                  </p>
+                </div>
+              </div>
+
+              {/* The "Why Me" Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                <div className="p-4 rounded-xl bg-white/5 border border-white/5">
+                  <h4 className="text-white font-bold mb-1 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-purple-400" />
+                    Certified Expert
+                  </h4>
+                  <p className="text-sm text-slate-500">Ranked top 10% of automation engineers worldwide.</p>
+                </div>
+                <div className="p-4 rounded-xl bg-white/5 border border-white/5">
+                  <h4 className="text-white font-bold mb-1 flex items-center gap-2">
+                    <CheckCircle2 className="w-4 h-4 text-purple-400" />
+                    Latency Obsessed
+                  </h4>
+                  <p className="text-sm text-slate-500">Fine-tuned speeds. No awkward robotic pauses.</p>
+                </div>
+              </div>
+
+              <div className="pt-6">
+                <p className="text-sm text-slate-500 font-mono mb-4">
+                  SPECIALIZED INDUSTRIES:
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {["Real Estate", "Medical & Dental", "Home Services", "High-End Aesthetics"].map((tag) => (
+                    <span key={tag} className="px-3 py-1 rounded-full border border-white/10 bg-white/[0.02] text-xs text-slate-300">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </Reveal>
+
+        </div>
+      </div>
+    </section>
   );
 };
 
