@@ -684,7 +684,7 @@ const CaseStudiesSection: React.FC = () => {
             </div>
             
             <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[0.95] mb-8">
-              We don't sell software. <br />
+              We don't sell agents. <br />
               <span className="text-slate-500">We sell booked calendars.</span>
             </h2>
             
