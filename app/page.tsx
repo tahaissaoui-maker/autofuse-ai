@@ -1,6 +1,7 @@
 "use client";
-import React, { useEffect, useState, useRef, FormEvent } from "react";
 
+import React, { useEffect, useState, useRef, FormEvent } from "react";
+import Image from "next/image"; // <--- This line is critical for your error
 import { 
   Phone, 
   PhoneIncoming, 
@@ -8,11 +9,11 @@ import {
   Activity, 
   Star, 
   CheckCircle, 
-  CheckCircle2, // New
+  CheckCircle2, 
   ArrowRight, 
   ArrowUpRight, 
-  TrendingUp,   // New
-  User,         // New
+  TrendingUp,
+  User, 
   Play,
   Pause,
   Landmark, 
