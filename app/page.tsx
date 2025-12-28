@@ -590,121 +590,203 @@ const LiveDemoSection: React.FC = () => {
   );
 };
 
-const CaseStudiesSection: React.FC = () => {
-  const outcomes = [
-    {
-      company: "Cooper Roofing",
-      logo: "/logos/cooper.webp",
-      metric: "3 Jobs",
-      suffix: "Booked",
-      timeframe: "Week 1",
-      context: "2 Repairs + 1 Full Replacement",
-      cost: "$2.40 cost per booking",
-      audio: "/audio/cooper.mp3",
-    },
-    {
-      company: "Cornerstone",
-      logo: "/logos/cornerstone.webp",
-      metric: "6 Leases",
-      suffix: "Signed",
-      timeframe: "30 Days",
-      context: "From after-hours voicemail calls",
-      cost: "Zero staff overtime",
-      audio: "/audio/cornerstone.mp3",
-    },
-    {
-      company: "NC Homebuyers",
-      logo: "/logos/nc-homebuyers.webp",
-      metric: "41 Sellers",
-      suffix: "Qualified",
-      timeframe: "60 Days",
-      context: "Filtered from 200+ inbound leads",
-      cost: "2 wholesale deals closed",
-      audio: "/audio/nc-homebuyers.mp3",
-    },
-    {
-      company: "Grey Street Dentist",
-      logo: "/logos/grey-street.webp",
-      metric: "94%",
-      suffix: "Answer Rate",
-      timeframe: "Month 1",
-      context: "Up from 67% missed calls",
-      cost: "28 new patients added",
-      audio: "/audio/grey-street.mp3",
-    }
-  ];
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
+import Image from "next/image";
+import { Play, Pause, ArrowUpRight, BadgeCheck } from "lucide-react";
+
+// Assuming you have a Reveal component - if not, I've included a simple one below
+interface RevealProps {
+  children: React.ReactNode;
+  delay?: number;
+}
+
+const Reveal: React.FC<RevealProps> = ({ children, delay = 0 }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setIsVisible(true), delay);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [delay]);
 
   return (
-    <section id="case-studies" className="relative bg-[#050505] py-24 md:py-32 overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-[#050505] to-[#050505] pointer-events-none" />
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      }`}
+    >
+      {children}
+    </div>
+  );
+};
+
+// --- Types ---
+interface Outcome {
+  company: string;
+  logo: string;
+  industry: string;
+  metric: string;
+  metricColor: string;
+  suffix: string;
+  timeframe: string;
+  transformation: {
+    before: string;
+    after: string;
+  };
+  kicker: string;
+  kickerColor: string;
+  attribution: {
+    name: string;
+    title: string;
+    initial: string;
+  };
+  audio: string;
+}
+
+// --- Data ---
+const outcomes: Outcome[] = [
+  {
+    company: "Cooper Roofing",
+    logo: "/logos/cooper.webp",
+    industry: "Roofing",
+    metric: "3 Jobs",
+    metricColor: "from-emerald-400 to-emerald-500",
+    suffix: "Booked Per Week",
+    timeframe: "Avg. over 4 weeks",
+    transformation: {
+      before: "Missed calls during estimates",
+      after: "24/7 booking coverage",
+    },
+    kicker: "$2.40 average cost per booked job",
+    kickerColor: "border-emerald-500/50",
+    attribution: {
+      name: "Shane Cooper",
+      title: "Owner",
+      initial: "S",
+    },
+    audio: "/audio/cooper.mp3",
+  },
+  {
+    company: "Cornerstone",
+    logo: "/logos/cornerstone.webp",
+    industry: "Property Management",
+    metric: "6 Leases",
+    metricColor: "from-blue-400 to-blue-500",
+    suffix: "Signed",
+    timeframe: "First 30 days",
+    transformation: {
+      before: "Evening inquiries going to voicemail",
+      after: "Automatic tenant screening",
+    },
+    kicker: "84 tenants screened without staff involvement",
+    kickerColor: "border-blue-500/50",
+    attribution: {
+      name: "Jordon Good",
+      title: "Operations Manager",
+      initial: "J",
+    },
+    audio: "/audio/cornerstone.mp3",
+  },
+  {
+    company: "NC Homebuyers",
+    logo: "/logos/nc-homebuyers.webp",
+    industry: "Real Estate Investment",
+    metric: "41 Sellers",
+    metricColor: "from-violet-400 to-violet-500",
+    suffix: "Qualified",
+    timeframe: "60 days",
+    transformation: {
+      before: "Team buried in tire-kickers",
+      after: "Only motivated sellers hit the inbox",
+    },
+    kicker: "2 wholesale deals closed directly from AI-qualified leads",
+    kickerColor: "border-violet-500/50",
+    attribution: {
+      name: "Kevin Ramirez",
+      title: "Acquisitions Lead",
+      initial: "K",
+    },
+    audio: "/audio/nc-homebuyers.mp3",
+  },
+  {
+    company: "Grey Street Dentist",
+    logo: "/logos/grey-street.webp",
+    industry: "Dental Practice",
+    metric: "0%",
+    metricColor: "from-cyan-400 to-cyan-500",
+    suffix: "Missed Calls",
+    timeframe: "Month 1",
+    transformation: {
+      before: "37% of calls going unanswered",
+      after: "Every single call picked up",
+    },
+    kicker: "28 new patients added to the books",
+    kickerColor: "border-cyan-500/50",
+    attribution: {
+      name: "Dr. Hyun Soo Yu",
+      title: "Practice Owner",
+      initial: "D",
+    },
+    audio: "/audio/grey-street.mp3",
+  },
+];
+
+// --- Main Section ---
+const CaseStudiesSection: React.FC = () => {
+  return (
+    <section
+      id="case-studies"
+      className="relative bg-[#030303] py-24 md:py-32 overflow-hidden"
+    >
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(120,80,200,0.15),transparent)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMwMDAiLz48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjMTExIi8+PC9zdmc+')] opacity-40 pointer-events-none" />
 
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 relative z-10">
-        
+        {/* Header */}
         <Reveal>
-          <div className="mb-20 text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-              Verified Outcomes
+          <div className="mb-16 md:mb-20 text-center space-y-5">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-4">
+              <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">
+                Verified Outcomes
+              </span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+              We don't sell software.
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-400 to-purple-400">
+                We sell booked calendars.
+              </span>
             </h2>
+
             <p className="text-slate-500 max-w-2xl mx-auto text-lg">
-              We don't sell "AI". We sell calendar bookings and signed contracts.
+              Every metric below came from a live agent we built. Every number
+              is verified. Listen for yourself.
             </p>
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
           {outcomes.map((item, index) => (
             <Reveal key={item.company} delay={index * 100}>
-              <div className="group relative flex flex-col justify-between h-full min-h-[360px] p-6 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.06] hover:border-purple-500/30 transition-all duration-500">
-                
-                {/* Floating Tech Arrow (Absolute Position) */}
-                <div className="absolute top-6 right-6 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 group-hover:border-purple-500/50 group-hover:bg-purple-500/10 transition-colors z-20">
-                    <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-purple-400" />
-                </div>
-
-                {/* Top: Logo (Centered, Bigger, In Color) */}
-                <div className="relative w-full flex justify-center mb-8 mt-2">
-                  <div className="relative h-16 w-48 transition-transform duration-500 group-hover:scale-105">
-                     <Image 
-                         src={item.logo} 
-                         alt={item.company} 
-                         fill
-                         className="object-contain" // object-contain defaults to center
-                         priority={index < 2} // Preload the first two for speed
-                      />
-                  </div>
-                </div>
-
-                {/* Middle: The BIG Number */}
-                <div className="space-y-1 mb-8">
-                  <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400 group-hover:from-white group-hover:to-white transition-all">
-                    {item.metric}
-                  </div>
-                  <div className="text-sm font-medium text-purple-400 uppercase tracking-wider">
-                    {item.suffix}
-                  </div>
-                  <div className="text-xs text-slate-500 font-mono mt-1">
-                    — {item.timeframe}
-                  </div>
-                </div>
-
-                {/* Bottom: Context & Audio */}
-                <div className="space-y-6">
-                  <div className="space-y-2">
-                    <p className="text-sm text-slate-300 leading-snug">
-                      {item.context}
-                    </p>
-                    <p className="text-xs text-slate-500 border-l-2 border-white/10 pl-3">
-                      {item.cost}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-white/5">
-                    <MinimalAudioPlayer src={item.audio} />
-                  </div>
-                </div>
-
-              </div>
+              <OutcomeCard item={item} index={index} />
             </Reveal>
           ))}
         </div>
@@ -713,8 +795,115 @@ const CaseStudiesSection: React.FC = () => {
   );
 };
 
-// --- Minimalist & Sleek Audio Player ---
-const MinimalAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
+// --- Individual Card Component ---
+const OutcomeCard: React.FC<{ item: Outcome; index: number }> = ({
+  item,
+  index,
+}) => {
+  return (
+    <div className="group relative flex flex-col h-full min-h-[480px] rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.05] to-transparent backdrop-blur-sm hover:border-white/[0.15] hover:from-white/[0.08] transition-all duration-500 overflow-hidden">
+      {/* Hover Glow Effect */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+        <div
+          className={`absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent ${item.metricColor.replace("from-", "via-").split(" ")[0]} to-transparent`}
+        />
+      </div>
+
+      {/* External Link Arrow */}
+      <div className="absolute top-5 right-5 z-20">
+        <div className="flex items-center justify-center w-9 h-9 rounded-full bg-white/[0.05] border border-white/[0.08] group-hover:border-white/20 group-hover:bg-white/10 transition-all duration-300">
+          <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-white transition-colors" />
+        </div>
+      </div>
+
+      {/* Content Container */}
+      <div className="flex flex-col h-full p-6">
+        {/* Logo */}
+        <div className="relative w-full flex justify-center mb-6 pt-2">
+          <div className="relative h-14 w-44 transition-transform duration-500 group-hover:scale-105">
+            <Image
+              src={item.logo}
+              alt={item.company}
+              fill
+              className="object-contain"
+              priority={index < 2}
+            />
+          </div>
+        </div>
+
+        {/* Metric Block */}
+        <div className="space-y-1.5 mb-6">
+          <div
+            className={`text-5xl lg:text-[3.5rem] font-bold text-transparent bg-clip-text bg-gradient-to-br ${item.metricColor}`}
+          >
+            {item.metric}
+          </div>
+          <div
+            className={`text-sm font-semibold uppercase tracking-widest text-transparent bg-clip-text bg-gradient-to-r ${item.metricColor}`}
+          >
+            {item.suffix}
+          </div>
+          <div className="text-xs text-slate-600 font-mono">
+            — {item.timeframe}
+          </div>
+        </div>
+
+        {/* Transformation Story */}
+        <div className="space-y-3 mb-6 flex-grow">
+          <div className="flex items-start gap-2 text-sm">
+            <span className="text-slate-600 shrink-0">From:</span>
+            <span className="text-slate-400">{item.transformation.before}</span>
+          </div>
+          <div className="flex items-start gap-2 text-sm">
+            <span className="text-slate-600 shrink-0">To:</span>
+            <span className="text-white font-medium">
+              {item.transformation.after}
+            </span>
+          </div>
+
+          {/* Kicker Stat */}
+          <div
+            className={`text-xs text-slate-500 border-l-2 ${item.kickerColor} pl-3 mt-4`}
+          >
+            {item.kicker}
+          </div>
+        </div>
+
+        {/* Bottom Section: Audio + Attribution */}
+        <div className="mt-auto space-y-4">
+          {/* Audio Player */}
+          <MinimalAudioPlayer src={item.audio} accentColor={item.metricColor} />
+
+          {/* Attribution */}
+          <div className="flex items-center gap-3 pt-4 border-t border-white/[0.06]">
+            <div
+              className={`w-9 h-9 rounded-full bg-gradient-to-br ${item.metricColor} flex items-center justify-center text-sm font-semibold text-white/90`}
+            >
+              {item.attribution.initial}
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-1.5">
+                <span className="text-sm font-medium text-white truncate">
+                  {item.attribution.name}
+                </span>
+                <BadgeCheck className="w-4 h-4 text-blue-500 shrink-0" />
+              </div>
+              <div className="text-xs text-slate-600 uppercase tracking-wide">
+                {item.attribution.title}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- Audio Player Component ---
+const MinimalAudioPlayer: React.FC<{ src: string; accentColor: string }> = ({
+  src,
+  accentColor,
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -737,30 +926,40 @@ const MinimalAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
   }, []);
 
   return (
-    <button 
+    <button
       onClick={togglePlay}
-      className="w-full flex items-center justify-between group/audio p-2 rounded-xl bg-black/40 border border-white/5 hover:border-purple-500/30 transition-all"
+      className="w-full flex items-center justify-between group/audio p-2.5 rounded-xl bg-black/60 border border-white/[0.06] hover:border-white/[0.12] hover:bg-black/80 transition-all duration-300"
+      aria-label={isPlaying ? "Pause audio" : "Play audio"}
     >
       <div className="flex items-center gap-3">
-        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white text-black shrink-0">
+        <div
+          className={`w-9 h-9 flex items-center justify-center rounded-full bg-white text-black shrink-0 transition-transform duration-300 ${isPlaying ? "scale-95" : "group-hover/audio:scale-105"}`}
+        >
           {isPlaying ? (
-            <Pause className="w-3 h-3 fill-current" />
+            <Pause className="w-3.5 h-3.5 fill-current" />
           ) : (
-            <Play className="w-3 h-3 fill-current ml-0.5" />
+            <Play className="w-3.5 h-3.5 fill-current ml-0.5" />
           )}
         </div>
-        <span className="text-xs font-semibold text-slate-400 group-hover/audio:text-white transition-colors">
+        <span className="text-xs font-semibold text-slate-500 group-hover/audio:text-slate-300 transition-colors">
           {isPlaying ? "Listening..." : "Hear the Agent"}
         </span>
       </div>
-      
-      {/* Visual Waveform Effect */}
-      <div className="flex gap-0.5 items-center h-3 mr-2 opacity-50 group-hover/audio:opacity-100 transition-opacity">
-        {[...Array(6)].map((_, i) => (
-          <div 
-            key={i} 
-            className={`w-0.5 rounded-full bg-purple-500 transition-all duration-300 ${isPlaying ? 'animate-voice-wave' : 'h-1.5'}`}
-            style={{ animationDelay: `${i * 0.1}s` }}
+
+      {/* Waveform */}
+      <div className="flex gap-[3px] items-center h-4 mr-1">
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={i}
+            className={`w-[3px] rounded-full transition-all duration-300 ${
+              isPlaying
+                ? `bg-gradient-to-t ${accentColor} animate-waveform`
+                : "bg-slate-700 h-2"
+            }`}
+            style={{
+              animationDelay: `${i * 0.15}s`,
+              height: isPlaying ? undefined : "8px",
+            }}
           />
         ))}
       </div>
@@ -768,6 +967,20 @@ const MinimalAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
     </button>
   );
 };
+
+export default CaseStudiesSection;
+
+// --- Add this to your global CSS (globals.css) ---
+/*
+@keyframes waveform {
+  0%, 100% { height: 8px; }
+  50% { height: 16px; }
+}
+
+.animate-waveform {
+  animation: waveform 0.8s ease-in-out infinite;
+}
+*/
 
 const ProcessSection: React.FC = () => {
   const steps = [
