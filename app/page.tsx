@@ -52,6 +52,7 @@ export default function AutoFuseAIPage() {
           <ServicesSplitSection />
           <LiveDemoSection />
           <CaseStudiesSection />
+          <FounderSection />
           <ProcessSection />
           <FinalCTASection />
         </main>
