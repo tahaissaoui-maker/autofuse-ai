@@ -24,8 +24,7 @@ import {
   X,
   Volume2,
   MoreVertical,
-  Trophy, 
-  User
+  Trophy
 } from "lucide-react";
 
 export default function AutoFuseAIPage() {
