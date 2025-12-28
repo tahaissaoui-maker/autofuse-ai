@@ -590,117 +590,200 @@ const LiveDemoSection: React.FC = () => {
   );
 };
 
+// --- Imports (Ensure these are at the top) ---
+import Image from "next/image";
+import { 
+  Play, 
+  Pause, 
+  ArrowRight, 
+  CheckCircle2, 
+  TrendingUp,
+  Activity,
+  User
+} from "lucide-react";
+
+// --- The Main Section Component ---
 const CaseStudiesSection: React.FC = () => {
   const outcomes = [
     {
       company: "Cooper Roofing",
       logo: "/logos/cooper.webp",
+      industry: "Roofing",
       metric: "3 Jobs",
-      suffix: "Booked",
-      timeframe: "Week 1",
-      context: "2 Repairs + 1 Full Replacement",
-      cost: "$2.40 cost per booking",
+      metricLabel: "BOOKED / WEEK",
+      metricColor: "text-emerald-400",
+      glowColor: "group-hover:shadow-emerald-900/20",
+      borderColor: "group-hover:border-emerald-500/30",
+      timeframe: "Avg. over 4 weeks",
+      before: "Missed calls during estimates",
+      after: "24/7 booking coverage",
+      kicker: "$2.40 avg cost per booked job",
+      owner: "Shane Cooper",
+      role: "Owner",
       audio: "/audio/cooper.mp3",
     },
     {
       company: "Cornerstone",
       logo: "/logos/cornerstone.webp",
-      metric: "6 Leases",
-      suffix: "Signed",
-      timeframe: "30 Days",
-      context: "From after-hours voicemail calls",
-      cost: "Zero staff overtime",
+      industry: "Landscaping",
+      metric: "6 Jobs",
+      metricLabel: "BOOKED",
+      metricColor: "text-blue-400",
+      glowColor: "group-hover:shadow-blue-900/20",
+      borderColor: "group-hover:border-blue-500/30",
+      timeframe: "First 30 days",
+      before: "Quote requests sitting overnight",
+      after: "Same-day callback on every lead",
+      kicker: "73 inquiries handled w/o staff",
+      owner: "Jordon Good",
+      role: "Owner",
       audio: "/audio/cornerstone.mp3",
     },
     {
       company: "NC Homebuyers",
       logo: "/logos/nc-homebuyers.webp",
+      industry: "Real Estate Inv.",
       metric: "41 Sellers",
-      suffix: "Qualified",
+      metricLabel: "QUALIFIED",
+      metricColor: "text-purple-400",
+      glowColor: "group-hover:shadow-purple-900/20",
+      borderColor: "group-hover:border-purple-500/30",
       timeframe: "60 Days",
-      context: "Filtered from 200+ inbound leads",
-      cost: "2 wholesale deals closed",
+      before: "Team buried in tire-kickers",
+      after: "Only motivated sellers hit inbox",
+      kicker: "2 wholesale deals closed from AI",
+      owner: "Kevin Ramirez",
+      role: "Acquisitions Lead",
       audio: "/audio/nc-homebuyers.mp3",
     },
     {
       company: "Grey Street Dentist",
       logo: "/logos/grey-street.webp",
-      metric: "94%",
-      suffix: "Answer Rate",
+      industry: "Dental Practice",
+      metric: "0%",
+      metricLabel: "MISSED CALLS",
+      metricColor: "text-cyan-400",
+      glowColor: "group-hover:shadow-cyan-900/20",
+      borderColor: "group-hover:border-cyan-500/30",
       timeframe: "Month 1",
-      context: "Up from 67% missed calls",
-      cost: "28 new patients added",
+      before: "37% of calls going unanswered",
+      after: "Every single call picked up",
+      kicker: "28 new patients added to books",
+      owner: "Dr. Hyun Soo Yu",
+      role: "Practice Owner",
       audio: "/audio/grey-street.mp3",
     }
   ];
 
   return (
-    <section id="case-studies" className="relative bg-[#050505] py-24 md:py-32 overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-[#050505] to-[#050505] pointer-events-none" />
+    <section id="case-studies" className="relative bg-[#030303] py-24 md:py-40 overflow-hidden">
+      
+      {/* Abstract Background Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+      <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black to-transparent pointer-events-none" />
 
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 relative z-10">
         
+        {/* Header Block */}
         <Reveal>
-          <div className="mb-20 text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-              Verified Outcomes
+          <div className="mb-20 md:mb-32 max-w-4xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-purple-500/30 bg-purple-500/10 text-[10px] font-mono font-bold uppercase tracking-widest text-purple-300">
+              <Activity className="w-3 h-3" />
+              Exposed Pipelines
+            </div>
+            
+            <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[0.95] mb-8">
+              We don't sell software. <br />
+              <span className="text-slate-500">We sell booked calendars.</span>
             </h2>
-            <p className="text-slate-500 max-w-2xl mx-auto text-lg">
-              We don't sell "AI". We sell calendar bookings and signed contracts.
+            
+            <p className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed border-l-2 border-purple-500/50 pl-6">
+              Every metric below came from a live agent we built. <br />
+              Every number is verified. Listen for yourself.
             </p>
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* The Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {outcomes.map((item, index) => (
             <Reveal key={item.company} delay={index * 100}>
-              <div className="group relative flex flex-col justify-between h-full min-h-[360px] p-6 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm hover:bg-white/[0.06] hover:border-purple-500/30 transition-all duration-500">
+              <div className={`group relative flex flex-col h-full rounded-[2rem] border border-white/10 bg-[#080808] p-8 md:p-10 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${item.borderColor} ${item.glowColor}`}>
                 
-                {/* Floating Tech Arrow (Absolute Position) */}
-                <div className="absolute top-6 right-6 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 group-hover:border-purple-500/50 group-hover:bg-purple-500/10 transition-colors z-20">
-                    <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-purple-400" />
-                </div>
-
-                {/* Top: Logo (Centered, Bigger, In Color) */}
-                <div className="relative w-full flex justify-center mb-8 mt-2">
-                  <div className="relative h-16 w-48 transition-transform duration-500 group-hover:scale-105">
+                {/* Header: Logo & Badge */}
+                <div className="flex justify-between items-start mb-10">
+                  <div className="relative h-12 w-40 opacity-90 transition-opacity group-hover:opacity-100">
                      <Image 
                          src={item.logo} 
                          alt={item.company} 
                          fill
-                         className="object-contain" // object-contain defaults to center
-                         priority={index < 2} // Preload the first two for speed
+                         className="object-contain object-left"
                       />
                   </div>
-                </div>
-
-                {/* Middle: The BIG Number */}
-                <div className="space-y-1 mb-8">
-                  <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white to-slate-400 group-hover:from-white group-hover:to-white transition-all">
-                    {item.metric}
-                  </div>
-                  <div className="text-sm font-medium text-purple-400 uppercase tracking-wider">
-                    {item.suffix}
-                  </div>
-                  <div className="text-xs text-slate-500 font-mono mt-1">
-                    — {item.timeframe}
+                  <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-white/5 text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+                    {item.industry}
                   </div>
                 </div>
 
-                {/* Bottom: Context & Audio */}
-                <div className="space-y-6">
-                  <div className="space-y-2">
-                    <p className="text-sm text-slate-300 leading-snug">
-                      {item.context}
-                    </p>
-                    <p className="text-xs text-slate-500 border-l-2 border-white/10 pl-3">
-                      {item.cost}
-                    </p>
+                {/* Hero Metric Section */}
+                <div className="mb-10">
+                  <div className="flex items-baseline gap-3 mb-2">
+                    <span className={`text-6xl md:text-7xl font-bold tracking-tighter ${item.metricColor}`}>
+                      {item.metric}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-3 text-sm font-mono font-medium text-slate-500 uppercase tracking-widest">
+                    {item.metricLabel}
+                    <span className="w-1 h-1 rounded-full bg-slate-700" />
+                    {item.timeframe}
+                  </div>
+                </div>
+
+                {/* Transformation Line */}
+                <div className="mb-8 p-6 rounded-2xl bg-white/[0.03] border border-white/5 backdrop-blur-sm relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-white/10 to-transparent" />
+                  <div className="flex flex-col gap-4 relative z-10">
+                    <div className="flex items-center gap-3 text-sm text-slate-500 line-through decoration-slate-600/50">
+                      <span className="w-1.5 h-1.5 rounded-full bg-rose-500/50" />
+                      {item.before}
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-white font-medium">
+                      <ArrowRight className="w-4 h-4 text-emerald-500" />
+                      {item.after}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer: Kicker & Audio */}
+                <div className="mt-auto flex flex-col gap-6">
+                  {/* Kicker Stat */}
+                  <div className="flex items-center gap-2">
+                    <TrendingUp className="w-4 h-4 text-slate-600" />
+                    <span className="text-xs md:text-sm font-mono text-slate-400 uppercase tracking-wide">
+                      {item.kicker}
+                    </span>
                   </div>
 
-                  <div className="pt-4 border-t border-white/5">
-                    <MinimalAudioPlayer src={item.audio} />
+                  {/* Audio & Attribution Row */}
+                  <div className="pt-6 border-t border-white/5 flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center text-sm font-bold text-white border border-white/10">
+                        {item.owner.charAt(0)}
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5 text-sm font-bold text-white">
+                          {item.owner}
+                          <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 fill-blue-500/10" />
+                        </div>
+                        <div className="text-[10px] text-slate-500 uppercase font-mono tracking-wider">
+                          {item.role}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="shrink-0">
+                      <DashboardAudioPlayer src={item.audio} />
+                    </div>
                   </div>
                 </div>
 
@@ -713,8 +796,8 @@ const CaseStudiesSection: React.FC = () => {
   );
 };
 
-// --- Minimalist & Sleek Audio Player ---
-const MinimalAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
+// --- New "Dashboard" Style Audio Player ---
+const DashboardAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -739,30 +822,28 @@ const MinimalAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
   return (
     <button 
       onClick={togglePlay}
-      className="w-full flex items-center justify-between group/audio p-2 rounded-xl bg-black/40 border border-white/5 hover:border-purple-500/30 transition-all"
+      className={`relative group flex items-center gap-3 pl-1 pr-4 py-1 rounded-full border transition-all duration-300 ${isPlaying ? 'bg-white/10 border-purple-500/50' : 'bg-transparent border-white/10 hover:bg-white/5 hover:border-white/20'}`}
     >
-      <div className="flex items-center gap-3">
-        <div className="w-8 h-8 flex items-center justify-center rounded-full bg-white text-black shrink-0">
-          {isPlaying ? (
-            <Pause className="w-3 h-3 fill-current" />
-          ) : (
-            <Play className="w-3 h-3 fill-current ml-0.5" />
-          )}
-        </div>
-        <span className="text-xs font-semibold text-slate-400 group-hover/audio:text-white transition-colors">
-          {isPlaying ? "Listening..." : "Hear the Agent"}
-        </span>
+      <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isPlaying ? 'bg-purple-500 text-white' : 'bg-white text-black'}`}>
+        {isPlaying ? (
+          <Pause className="w-3 h-3 fill-current" />
+        ) : (
+          <Play className="w-3 h-3 fill-current ml-0.5" />
+        )}
       </div>
       
-      {/* Visual Waveform Effect */}
-      <div className="flex gap-0.5 items-center h-3 mr-2 opacity-50 group-hover/audio:opacity-100 transition-opacity">
-        {[...Array(6)].map((_, i) => (
-          <div 
-            key={i} 
-            className={`w-0.5 rounded-full bg-purple-500 transition-all duration-300 ${isPlaying ? 'animate-voice-wave' : 'h-1.5'}`}
-            style={{ animationDelay: `${i * 0.1}s` }}
-          />
-        ))}
+      <div className="flex flex-col items-start">
+        <span className="text-[9px] font-bold uppercase tracking-widest text-slate-400 group-hover:text-white transition-colors">
+          {isPlaying ? "Playing..." : "Hear Agent"}
+        </span>
+        {/* Fake waveform animation when playing */}
+        {isPlaying && (
+           <div className="flex gap-0.5 h-2 items-end">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="w-0.5 bg-purple-400 animate-voice-wave" style={{animationDelay: `${i*0.1}s`}} />
+              ))}
+           </div>
+        )}
       </div>
       <audio ref={audioRef} src={src} preload="none" />
     </button>
