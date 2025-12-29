@@ -1242,27 +1242,6 @@ const CursorGlow: React.FC = () => {
   );
 };
 
-const WaveformCircle: React.FC = () => {
-    return (
-      <div className="relative flex items-center justify-center h-full w-full">
-         <div className="absolute w-24 h-24 rounded-full border border-white/20 animate-[spin_10s_linear_infinite]" />
-         <div className="absolute w-32 h-32 rounded-full border border-purple-500/10 animate-[spin_15s_linear_infinite_reverse]" />
-         
-         <div className="flex gap-1 items-center">
-            {[...Array(5)].map((_, i) => (
-                <div 
-                    key={i}
-                    className="w-1.5 bg-gradient-to-t from-purple-400 to-cyan-400 rounded-full animate-voice-wave"
-                    style={{
-                        animationDelay: `${i * 0.15}s`
-                    }}
-                />
-            ))}
-         </div>
-      </div>
-    );
-};
-
 const Reveal: React.FC<{ children: React.ReactNode; delay?: number }> = ({ children, delay = 0 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
