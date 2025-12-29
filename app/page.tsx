@@ -211,39 +211,42 @@ const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative flex items-center justify-center px-4 pt-12 pb-12 md:pt-24 md:pb-20 sm:px-6 lg:px-8 overflow-visible z-10 w-full"
+      className="relative flex items-center justify-center px-4 pt-20 pb-20 md:pt-32 md:pb-32 sm:px-6 lg:px-8 overflow-visible z-10 w-full"
     >
+      {/* 1. UPGRADE: Technical Grid Background */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+
       <Reveal>
-        <div className="mx-auto w-full max-w-[1400px] grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+        <div className="mx-auto w-full max-w-[1400px] grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
-          {/* 1. TEXT CONTENT */}
-          <div className="space-y-8 md:space-y-12 text-center lg:text-left">
+          {/* LEFT: TEXT CONTENT */}
+          <div className="space-y-10 text-center lg:text-left relative z-10">
+            
+            {/* Top Badge */}
             <div className="flex justify-center lg:justify-start w-full">
-              <div className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 py-2 text-sm font-medium text-slate-300 backdrop-blur-md shadow-lg shadow-purple-500/10">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                </span>
-                <span className="tracking-wide">Trusted by 20+ businesses worldwide</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-bold uppercase tracking-widest backdrop-blur-md">
+                <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+                System Online
               </div>
             </div>
 
-            <div className="space-y-6 md:space-y-8">
-<h1 className="text-balance text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-white leading-[1.1] md:leading-[1.05]">
-  Never miss a lead <br />
-  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400">
-    with Voice AI
-  </span>
-</h1>
+            <div className="space-y-6">
+              <h1 className="text-balance text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white leading-[1] md:leading-[0.95]">
+                Never miss a lead <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400">
+                  with Voice AI
+                </span>
+              </h1>
               <p className="mx-auto lg:mx-0 max-w-2xl text-lg md:text-xl text-slate-400 leading-relaxed font-light">
                 Your 24/7 AI receptionist answers every call, qualifies prospects, and books revenue instantly. No sick days. No missed opportunities.
               </p>
             </div>
 
-            <div className="flex flex-col items-center lg:items-start gap-6 sm:flex-row sm:justify-center lg:justify-start pt-4">
+            {/* Buttons */}
+            <div className="flex flex-col items-center lg:items-start gap-6 sm:flex-row sm:justify-center lg:justify-start pt-2">
               <a
                 href={calUrl}
-                className="neon-button inline-flex h-12 md:h-16 w-auto sm:w-auto min-w-[200px] md:min-w-[240px] items-center justify-center rounded-full px-10 md:px-10 text-base font-bold text-slate-950 transition-transform hover:scale-105"
+                className="neon-button inline-flex h-14 w-full sm:w-auto min-w-[200px] items-center justify-center rounded-full px-8 text-base font-bold text-slate-950 transition-transform hover:scale-105"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -252,18 +255,53 @@ const HeroSection: React.FC = () => {
               
               <a 
                 href="#demo"
-                className="group inline-flex h-12 md:h-16 w-auto items-center justify-center rounded-full px-8 md:px-10 text-sm md:text-base font-bold text-white transition-colors hover:text-purple-400"
+                className="group inline-flex h-14 w-full sm:w-auto items-center justify-center rounded-full px-8 text-base font-bold text-white border border-white/10 hover:bg-white/5 transition-all"
               >
-                Try Live Demo <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
+                Try Live Demo <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
+            </div>
+
+            {/* 2. UPGRADE: Social Proof / Logos Section */}
+            <div className="pt-8 border-t border-white/5">
+              <p className="text-xs text-slate-500 font-mono mb-4 uppercase tracking-widest text-center lg:text-left">
+                Trusted by 20+ businesses including:
+              </p>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-8 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                {/* We use text representations for now since they are safer than missing images, styled to look like logos */}
+                <span className="text-lg font-bold text-white flex items-center gap-2"><Building2 className="w-5 h-5" /> Cornerstone</span>
+                <span className="text-lg font-serif font-bold text-white">Cooper Roofing</span>
+                <span className="text-lg font-bold text-white flex items-center gap-2"><Home className="w-5 h-5" /> NC Homebuyers</span>
+              </div>
             </div>
           </div>
 
-          {/* 2. ORB ANIMATION */}
-          <div className="relative flex justify-center lg:justify-end perspective-1000 mt-4 lg:mt-0">
-             <div className="relative h-72 w-72 sm:h-96 sm:w-96 lg:h-[500px] lg:w-[500px] flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-purple-600 via-blue-600 to-cyan-500 blur-[80px] opacity-40 animate-pulse" />
-                <div className="absolute inset-4 rounded-full bg-black/80 backdrop-blur-xl border border-white/10 flex items-center justify-center shadow-[0_0_80px_rgba(124,58,237,0.3)]">
+          {/* RIGHT: 3. UPGRADE: The "Neural Core" Animation */}
+          <div className="relative flex justify-center lg:justify-end perspective-1000 mt-10 lg:mt-0">
+             <div className="relative h-[400px] w-[400px] md:h-[600px] md:w-[600px] flex items-center justify-center">
+                
+                {/* Outer Glow */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-purple-600/30 via-blue-600/30 to-cyan-500/30 blur-[100px] rounded-full animate-pulse" />
+                
+                {/* Rotating Rings */}
+                <div className="absolute w-[80%] h-[80%] rounded-full border border-white/5 border-dashed animate-[spin_20s_linear_infinite]" />
+                <div className="absolute w-[60%] h-[60%] rounded-full border border-white/10 animate-[spin_15s_linear_infinite_reverse]" />
+                
+                {/* Floating Status Badges */}
+                <div className="absolute top-[20%] right-[10%] bg-[#0A0A0A] border border-white/10 px-3 py-1.5 rounded-lg shadow-xl animate-bounce delay-700">
+                    <div className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        <span className="text-[10px] font-mono text-slate-300">QUALIFYING LEAD...</span>
+                    </div>
+                </div>
+                <div className="absolute bottom-[25%] left-[0%] bg-[#0A0A0A] border border-white/10 px-3 py-1.5 rounded-lg shadow-xl animate-bounce delay-1000">
+                    <div className="flex items-center gap-2">
+                        <CheckCircle className="w-3 h-3 text-blue-500" />
+                        <span className="text-[10px] font-mono text-slate-300">APPOINTMENT BOOKED</span>
+                    </div>
+                </div>
+
+                {/* The Core */}
+                <div className="relative w-32 h-32 md:w-40 md:h-40 bg-black rounded-full border border-white/10 shadow-[0_0_50px_rgba(124,58,237,0.5)] flex items-center justify-center backdrop-blur-xl z-20">
                     <WaveformCircle />
                 </div>
              </div>
@@ -273,6 +311,25 @@ const HeroSection: React.FC = () => {
       </Reveal>
     </section>
   );
+};
+
+// --- Updated Waveform Component ---
+const WaveformCircle: React.FC = () => {
+    return (
+      <div className="flex items-center gap-1.5 h-12">
+         {[...Array(5)].map((_, i) => (
+            <div 
+                key={i}
+                className="w-2 rounded-full bg-gradient-to-t from-purple-500 to-blue-400 animate-voice-wave"
+                style={{
+                    height: '100%',
+                    animationDelay: `${i * 0.1}s`,
+                    animationDuration: '1s'
+                }}
+            />
+         ))}
+      </div>
+    );
 };
 
 const MissedMoneySection: React.FC = () => {
