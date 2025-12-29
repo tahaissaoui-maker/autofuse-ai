@@ -899,22 +899,22 @@ const FounderSection: React.FC = () => {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-blue-500/30 bg-blue-500/10 text-[10px] font-mono font-bold uppercase tracking-widest text-blue-300">
                   <User className="w-3 h-3" />
-                  Meet The Architect
+                  Meet The Founder
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">
-                  I don't just connect APIs. <br />
-                  <span className="text-slate-500">I engineer sales psychology.</span>
+                  I don't build chatbots. <br />
+                  <span className="text-slate-500">I build receptionists that never miss..</span>
                 </h2>
                 <div className="space-y-6 text-lg text-slate-400 leading-relaxed">
                   <p>
-                    Hi, I'm Taha. Before founding AutoFuse AI, I spent years as a <strong>Top Rated Certified Expert</strong>, helping businesses like <em>Cooper Roofing</em> and <em>Cornerstone</em> automate their most critical interactions.
+                    Hi, I'm Taha. I spent years as a Top Rated AI automation freelancer, helping 20+ businesses integrate AI & stop losing jobs to voicemail.
                   </p>
                   <p>
-                    I realized that most developers treat AI like a tech problem. They obsess over the code but ignore the conversation. 
+                    Most AI sounds like AI. Robotic pauses. Scripted responses. Falls apart the second a caller goes off-script or asks something unexpected. 
                     <strong className="text-white"> That is a mistake.</strong>
                   </p>
                   <p>
-                    I build systems that understand <strong>human nuance</strong>. My agents handle interruptions naturally, counter objections with custom scripts, and feel indistinguishable from your best sales rep.
+                    Mine don't. I build voice agents that handle interruptions, answer real questions about your services, and book estimates directly into your calendar, no human needed.
                   </p>
                 </div>
               </div>
@@ -926,14 +926,14 @@ const FounderSection: React.FC = () => {
                     <CheckCircle2 className="w-4 h-4 text-purple-400" />
                     Certified Expert
                   </h4>
-                  <p className="text-sm text-slate-500">Ranked top 10% of automation engineers worldwide.</p>
+                  <p className="text-sm text-slate-500">Ranked top 10% of Upwork freelancers worldwide.</p>
                 </div>
                 <div className="p-4 rounded-xl bg-white/5 border border-white/5">
                   <h4 className="text-white font-bold mb-1 flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-purple-400" />
-                    Latency Obsessed
+                    Quality Obsessed
                   </h4>
-                  <p className="text-sm text-slate-500">Fine-tuned speeds. No awkward robotic pauses.</p>
+                  <p className="text-sm text-slate-500">Your full satisfaction is my priority.</p>
                 </div>
               </div>
 
@@ -942,7 +942,7 @@ const FounderSection: React.FC = () => {
                   SPECIALIZED INDUSTRIES:
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {["Real Estate", "Medical & Dental", "Home Services", "High-End Aesthetics"].map((tag) => (
+                  {["Roofing", "Landscaping", "HVAC", "Plumbing"].map((tag) => (
                     <span key={tag} className="px-3 py-1 rounded-full border border-white/10 bg-white/[0.02] text-xs text-slate-300">
                       {tag}
                     </span>
