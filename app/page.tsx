@@ -138,32 +138,21 @@ const NavBar: React.FC = () => {
     <header className="sticky top-0 z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl transition-all duration-300">
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-4 py-3 md:py-4 sm:px-6 lg:px-8">
         
-      <a href="#hero" className="group flex items-center gap-3 relative z-50">
+        <a href="#hero" className="group flex items-center gap-3 relative z-50">
           
-          {/* --- HIGH-END LOGO CONTAINER --- */}
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl overflow-hidden shadow-[0_0_15px_rgba(147,51,234,0.5)] transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(59,130,246,0.6)]">
-             
-             {/* 1. Vivid Gradient Background (Purple to Blue) */}
-             <div className="absolute inset-0 bg-gradient-to-tr from-[#6d28d9] via-[#8b5cf6] to-[#3b82f6]" />
-             
-             {/* 2. Subtle Inner Glare (Glass Effect) */}
-             <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent opacity-50" />
-
-             {/* 3. The Transparent Logo (Clean Arrow) */}
+          {/* --- CLEAN LOGO (No Background) --- */}
+          <div className="relative h-9 w-9 md:h-10 md:w-10 transition-transform duration-300 group-hover:scale-105">
              <Image 
                src="/header-logo.png" 
                alt="AutoFuse AI Logo"
-               width={28} // Increased size for better visibility
-               height={28}
-               className="relative z-10 object-contain drop-shadow-md"
+               fill
+               className="object-contain"
+               priority
              />
           </div>
-          {/* --- END LOGO --- */}
 
-          <div className="leading-tight">
-            <div className="text-base font-bold tracking-wide text-white group-hover:text-slate-200 transition-colors">
-              AutoFuse AI
-            </div>
+          <div className="text-lg font-bold tracking-tight text-white group-hover:text-slate-200 transition-colors">
+            AutoFuse AI
           </div>
         </a>
         
