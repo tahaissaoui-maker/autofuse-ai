@@ -462,15 +462,6 @@ const ServicesSplitSection: React.FC = () => {
     );
   };
 
-// Ensure you have these imports at the top:
-import { 
-  Phone, 
-  Zap, 
-  Lock, 
-  Loader2, 
-  Wifi 
-} from "lucide-react";
-
 const LiveDemoSection: React.FC = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
