@@ -145,7 +145,7 @@ const NavBar: React.FC = () => {
                src="/header-logo.png" // Make sure you uploaded this file to public/
                alt="AutoFuse AI Logo"
                fill
-               className="object-cover"
+               className="object-cover mix-blend-screen"
              />
           </div>
           {/* --- NEW LOGO IMAGE END --- */}
