@@ -211,7 +211,7 @@ const HeroSection: React.FC = () => {
   return (
     <section
       id="hero"
-      className="relative flex items-center justify-center px-4 pt-20 pb-20 md:pt-32 md:pb-32 sm:px-6 lg:px-8 overflow-visible z-10 w-full"
+      className="relative flex items-center justify-center px-4 pt-20 pb-20 md:pt-20 md:pb-20 sm:px-6 lg:px-8 overflow-visible z-10 w-full"
     >
       {/* 1. UPGRADE: Technical Grid Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
