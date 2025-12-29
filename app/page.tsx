@@ -561,7 +561,7 @@ const LiveDemoSection: React.FC = () => {
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       required
-                      placeholder="Jordan Good"
+                      placeholder="John Johnson"
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all"
                     />
                   </div>
@@ -572,7 +572,7 @@ const LiveDemoSection: React.FC = () => {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      placeholder="jordan@cornerstone.com"
+                      placeholder="johnjohnson@google.com"
                       className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all"
                     />
                   </div>
@@ -601,7 +601,7 @@ const LiveDemoSection: React.FC = () => {
                    <input
                     value={website}
                     onChange={(e) => setWebsite(e.target.value)}
-                    placeholder="autofuse.ai"
+                    placeholder="autofuseai.com"
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-300 placeholder:text-slate-700 focus:outline-none focus:border-purple-500/50 transition-all"
                   />
                 </div>
