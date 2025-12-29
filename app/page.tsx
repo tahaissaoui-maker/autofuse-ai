@@ -138,7 +138,7 @@ const NavBar: React.FC = () => {
     <header className="sticky top-0 z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl transition-all duration-300">
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-4 py-3 md:py-4 sm:px-6 lg:px-8">
         
-        <a href="#hero" className="group flex items-center gap-2 relative z-50">
+        <a href="#hero" className="group flex items-center gap-0 relative z-50">
           
           {/* --- CLEAN LOGO (No Background) --- */}
           <div className="relative h-9 w-9 md:h-10 md:w-10 transition-transform duration-300 group-hover:scale-105">
