@@ -16,6 +16,8 @@ import {
   User, 
   Play,
   Pause,
+  TrendingDown, 
+  AlertTriangle,
   Landmark, 
   Home, 
   Smile, 
@@ -263,105 +265,133 @@ const HeroSection: React.FC = () => {
 };
 
 const MissedMoneySection: React.FC = () => {
-  const [missedCalls, setMissedCalls] = useState<string>("5");
-  const [clientValue, setClientValue] = useState<string>("800");
-  const [closeRate, setCloseRate] = useState<string>("30");
+  // ROOFER DEFAULTS: 
+  // 5 missed calls/week (very common during storms/busy season)
+  // $12,000 avg ticket (standard residential roof)
+  // 30% close rate (industry standard for inbound)
+  const [missedCallsWeekly, setMissedCallsWeekly] = useState<number>(5);
+  const [avgJobValue, setAvgJobValue] = useState<number>(12000);
+  const [closeRate, setCloseRate] = useState<number>(30);
 
-  const parsedMissed = Number.parseFloat(missedCalls) || 0;
-  const parsedValue = Number.parseFloat(clientValue) || 0;
-  const parsedClose = Number.parseFloat(closeRate) || 0;
-
-  const lostPerMonth = parsedMissed * parsedValue * (parsedClose / 100) * 30;
+  // Math: Weekly Calls * 4 = Monthly Calls * Close Rate * Job Value
+  const monthlyRevenueLost = (missedCallsWeekly * 4) * (closeRate / 100) * avgJobValue;
+  const annualRevenueLost = monthlyRevenueLost * 12;
 
   return (
-    <section
-      id="calculator"
-      className="relative pt-14 pb-16 md:pb-32 z-20"
-    >
-      <div className="relative mx-auto flex w-full max-w-[1400px] flex-col items-center gap-12 px-4 sm:px-6 lg:px-8 text-center">
+    <section id="calculator" className="relative py-24 md:py-32 bg-[#050505]">
+      {/* Background Glow for danger vibe */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-900/10 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="relative mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+        
         <Reveal>
-          <div className="space-y-6 max-w-3xl mx-auto">
-            <div className="flex items-center justify-center gap-3 opacity-90">
-              <Activity className="h-5 w-5 text-purple-400" />
-              <p className="text-sm font-bold uppercase tracking-[0.2em] text-purple-300">
-                The Cost of Silence
-              </p>
+          <div className="text-center mb-16 space-y-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold uppercase tracking-widest">
+              <TrendingDown className="w-4 h-4" />
+              Revenue Leak Detector
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
-              Your missed calls are expensive
+            <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight">
+              Calculate your <span className="text-red-500">Cost of Silence</span>
             </h2>
-            <p className="mx-auto text-base md:text-lg text-slate-400 leading-relaxed">
-              Every time the phone rings and goes to voicemail, you lose money. Calculate exactly how much revenue leaks out of your business every month below.
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+              Every missed call isn't just a missed conversation. It's a homeowner calling your competitor. See exactly what that silence costs you.
             </p>
           </div>
         </Reveal>
 
-        <Reveal delay={120}>
-          <div className="glass-card w-full max-w-3xl rounded-3xl border border-white/10 bg-[#0e0e0e]/80 p-6 md:p-10 shadow-[0_30px_100px_rgba(0,0,0,0.7)] backdrop-blur-2xl">
-            <form className="space-y-8 text-left">
-              <div className="grid gap-8 sm:grid-cols-2">
-                <div className="space-y-3">
-                  <label className="block text-sm font-medium text-slate-400 uppercase tracking-wide">
-                    Missed Calls / Day
-                  </label>
-                  <input
-                    type="number"
-                    min={0}
-                    value={missedCalls}
-                    onChange={(e) => setMissedCalls(e.target.value)}
-                    className="w-full rounded-2xl border border-white/10 bg-black/60 px-5 py-4 text-base text-slate-100 outline-none ring-purple-500/20 focus:border-purple-500 focus:ring-2 transition-all"
-                  />
+        <Reveal delay={100}>
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            
+            {/* LEFT: The Inputs (Interactive Sliders) */}
+            <div className="p-8 rounded-3xl bg-white/[0.03] border border-white/10 backdrop-blur-sm space-y-10">
+              
+              {/* Slider 1: Missed Calls */}
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm font-medium">
+                  <label className="text-slate-300">Missed Calls Per Week</label>
+                  <span className="text-white bg-white/10 px-3 py-1 rounded-lg">{missedCallsWeekly} calls</span>
                 </div>
-                <div className="space-y-3">
-                  <label className="block text-sm font-medium text-slate-400 uppercase tracking-wide">
-                    Avg. Client Value ($)
-                  </label>
-                  <input
-                    type="number"
-                    min={0}
-                    value={clientValue}
-                    onChange={(e) => setClientValue(e.target.value)}
-                    className="w-full rounded-2xl border border-white/10 bg-black/60 px-5 py-4 text-base text-slate-100 outline-none ring-purple-500/20 focus:border-purple-500 focus:ring-2 transition-all"
-                  />
+                <input 
+                  type="range" min="1" max="50" step="1"
+                  value={missedCallsWeekly}
+                  onChange={(e) => setMissedCallsWeekly(Number(e.target.value))}
+                  className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-purple-500 hover:accent-purple-400 transition-all"
+                />
+                <p className="text-xs text-slate-500">
+                  *Industry Avg: 20-30% of inbound calls go to voicemail.
+                </p>
+              </div>
+
+              {/* Slider 2: Job Value */}
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm font-medium">
+                  <label className="text-slate-300">Average Job Value</label>
+                  <span className="text-white bg-white/10 px-3 py-1 rounded-lg">${avgJobValue.toLocaleString()}</span>
+                </div>
+                <input 
+                  type="range" min="1000" max="50000" step="500"
+                  value={avgJobValue}
+                  onChange={(e) => setAvgJobValue(Number(e.target.value))}
+                  className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-blue-500 hover:accent-blue-400 transition-all"
+                />
+                <p className="text-xs text-slate-500">
+                  *Standard Roof Replacement: $12k - $15k.
+                </p>
+              </div>
+
+              {/* Slider 3: Close Rate */}
+              <div className="space-y-4">
+                <div className="flex justify-between text-sm font-medium">
+                  <label className="text-slate-300">Close Rate (Inbound Leads)</label>
+                  <span className="text-white bg-white/10 px-3 py-1 rounded-lg">{closeRate}%</span>
+                </div>
+                <input 
+                  type="range" min="1" max="100" step="1"
+                  value={closeRate}
+                  onChange={(e) => setCloseRate(Number(e.target.value))}
+                  className="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-emerald-500 hover:accent-emerald-400 transition-all"
+                />
+                <p className="text-xs text-slate-500">
+                  *Avg Inbound Close Rate: 30% - 50%.
+                </p>
+              </div>
+
+            </div>
+
+            {/* RIGHT: The Results (The "Pain") */}
+            <div className="relative h-full min-h-[400px] p-10 rounded-3xl bg-gradient-to-br from-red-950/30 to-black border border-red-500/20 flex flex-col justify-center items-center text-center space-y-8">
+              
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-50" />
+
+              <div>
+                <p className="text-red-400 text-sm font-bold uppercase tracking-widest mb-2 animate-pulse">
+                  Monthly Revenue Leaking
+                </p>
+                <div className="text-6xl md:text-7xl font-bold text-white tracking-tighter drop-shadow-[0_0_30px_rgba(220,38,38,0.3)]">
+                  ${monthlyRevenueLost.toLocaleString()}
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <label className="block text-sm font-medium text-slate-400 uppercase tracking-wide">
-                  Closing Rate (%)
-                </label>
-                <div className="relative">
-                    <input
-                    type="number"
-                    min={0}
-                    max={100}
-                    value={closeRate}
-                    onChange={(e) => setCloseRate(e.target.value)}
-                    className="w-full rounded-2xl border border-white/10 bg-black/60 px-5 py-4 text-base text-slate-100 outline-none ring-purple-500/20 focus:border-purple-500 focus:ring-2 transition-all"
-                    />
-                    <div className="absolute right-5 top-4 text-slate-500 text-base pointer-events-none">%</div>
+              <div className="w-full h-px bg-red-500/20" />
+
+              <div>
+                <p className="text-slate-400 text-xs uppercase tracking-wider mb-2">
+                  Annual Loss (The "New Crew" Cost)
+                </p>
+                <div className="text-3xl md:text-4xl font-bold text-red-200">
+                  ${annualRevenueLost.toLocaleString()}
                 </div>
               </div>
 
-              <div className="mt-8 rounded-2xl border border-rose-500/30 bg-rose-500/10 p-8 shadow-[0_0_40px_rgba(225,29,72,0.15)]">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest text-rose-400 mb-2">
-                      Revenue Lost / Month
-                    </p>
-                    <p className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-                      {lostPerMonth <= 0
-                        ? "$0"
-                        : lostPerMonth.toLocaleString("en-US", {
-                            style: "currency",
-                            currency: "USD",
-                            maximumFractionDigits: 0,
-                          })}
-                    </p>
-                  </div>
+              <div className="pt-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/20 text-red-300 text-xs">
+                  <AlertTriangle className="w-4 h-4" />
+                  <span>You are losing <b>{Math.round(missedCallsWeekly * 4 * (closeRate/100))} jobs</b> per month to voicemail.</span>
                 </div>
               </div>
-            </form>
+
+            </div>
+
           </div>
         </Reveal>
       </div>
