@@ -138,17 +138,24 @@ const NavBar: React.FC = () => {
     <header className="sticky top-0 z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl transition-all duration-300">
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-4 py-3 md:py-4 sm:px-6 lg:px-8">
         
-        <a href="#hero" className="group flex items-center gap-3 relative z-50">
-          {/* --- NEW LOGO IMAGE START --- */}
-          <div className="relative h-9 w-9 md:h-10 md:w-10 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(147,51,234,0.3)] transition-transform group-hover:scale-105">
+      <a href="#hero" className="group flex items-center gap-3 relative z-50">
+          
+          {/* --- CSS GENERATED GLOW ICON START --- */}
+          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-black border border-white/10 overflow-hidden shadow-[0_0_20px_rgba(147,51,234,0.3)] transition-transform group-hover:scale-105">
+             
+             {/* The Internal Glow (Replaces the purple circle) */}
+             <div className="absolute inset-0 bg-gradient-to-br from-purple-600/50 to-blue-600/50 blur-sm" />
+             
+             {/* The Transparent Logo Image */}
              <Image 
-               src="/header-logo.png" // Make sure you uploaded this file to public/
+               src="/header-logo.png" 
                alt="AutoFuse AI Logo"
-               fill
-               className="object-cover mix-blend-screen"
+               width={24} // Adjust size of arrow inside the box
+               height={24}
+               className="relative z-10 object-contain"
              />
           </div>
-          {/* --- NEW LOGO IMAGE END --- */}
+          {/* --- CSS GENERATED GLOW ICON END --- */}
 
           <div className="leading-tight">
             <div className="text-sm font-bold tracking-wide text-white">
@@ -156,7 +163,7 @@ const NavBar: React.FC = () => {
             </div>
           </div>
         </a>
-
+        
         <nav className="hidden md:flex items-center gap-10 text-sm font-medium text-slate-400">
           <a href="#calculator" className="nav-link hover:text-white transition-colors">Missed Revenue</a>
           <a href="#services" className="nav-link hover:text-white transition-colors">Capabilities</a>
