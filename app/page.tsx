@@ -139,9 +139,17 @@ const NavBar: React.FC = () => {
       <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between px-4 py-3 md:py-4 sm:px-6 lg:px-8">
         
         <a href="#hero" className="group flex items-center gap-3 relative z-50">
-          <div className="relative flex h-9 w-9 md:h-10 md:w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-purple-600 via-blue-600 to-cyan-500 shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-transform group-hover:scale-105">
-            <Phone className="h-4 w-4 md:h-5 md:w-5 text-white fill-white/20" />
+          {/* --- NEW LOGO IMAGE START --- */}
+          <div className="relative h-9 w-9 md:h-10 md:w-10 rounded-xl overflow-hidden shadow-[0_0_20px_rgba(147,51,234,0.3)] transition-transform group-hover:scale-105">
+             <Image 
+               src="/header-logo.png" // Make sure you uploaded this file to public/
+               alt="AutoFuse AI Logo"
+               fill
+               className="object-cover"
+             />
           </div>
+          {/* --- NEW LOGO IMAGE END --- */}
+
           <div className="leading-tight">
             <div className="text-sm font-bold tracking-wide text-white">
               AutoFuse AI
