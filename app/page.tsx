@@ -140,25 +140,28 @@ const NavBar: React.FC = () => {
         
       <a href="#hero" className="group flex items-center gap-3 relative z-50">
           
-          {/* --- CSS GENERATED GLOW ICON START --- */}
-          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-black border border-white/10 overflow-hidden shadow-[0_0_20px_rgba(147,51,234,0.3)] transition-transform group-hover:scale-105">
+          {/* --- HIGH-END LOGO CONTAINER --- */}
+          <div className="relative flex h-10 w-10 items-center justify-center rounded-xl overflow-hidden shadow-[0_0_15px_rgba(147,51,234,0.5)] transition-transform duration-300 group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(59,130,246,0.6)]">
              
-             {/* The Internal Glow (Replaces the purple circle) */}
-             <div className="absolute inset-0 bg-gradient-to-br from-purple-600/50 to-blue-600/50 blur-sm" />
+             {/* 1. Vivid Gradient Background (Purple to Blue) */}
+             <div className="absolute inset-0 bg-gradient-to-tr from-[#6d28d9] via-[#8b5cf6] to-[#3b82f6]" />
              
-             {/* The Transparent Logo Image */}
+             {/* 2. Subtle Inner Glare (Glass Effect) */}
+             <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent opacity-50" />
+
+             {/* 3. The Transparent Logo (Clean Arrow) */}
              <Image 
                src="/header-logo.png" 
                alt="AutoFuse AI Logo"
-               width={24} // Adjust size of arrow inside the box
-               height={24}
-               className="relative z-10 object-contain"
+               width={28} // Increased size for better visibility
+               height={28}
+               className="relative z-10 object-contain drop-shadow-md"
              />
           </div>
-          {/* --- CSS GENERATED GLOW ICON END --- */}
+          {/* --- END LOGO --- */}
 
           <div className="leading-tight">
-            <div className="text-sm font-bold tracking-wide text-white">
+            <div className="text-base font-bold tracking-wide text-white group-hover:text-slate-200 transition-colors">
               AutoFuse AI
             </div>
           </div>
