@@ -21,6 +21,10 @@ import {
   Landmark, 
   Home, 
   Smile, 
+  Zap,
+  Lock,
+  Loader2,
+  Wifi,
   Building2,
   Menu,
   X,
@@ -458,6 +462,15 @@ const ServicesSplitSection: React.FC = () => {
     );
   };
 
+// Ensure you have these imports at the top:
+import { 
+  Phone, 
+  Zap, 
+  Lock, 
+  Loader2, 
+  Wifi 
+} from "lucide-react";
+
 const LiveDemoSection: React.FC = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -480,9 +493,7 @@ const LiveDemoSection: React.FC = () => {
 
       await fetch(webhookUrl, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           fullName,
           email,
@@ -503,121 +514,155 @@ const LiveDemoSection: React.FC = () => {
   };
 
   return (
-    <section
-      id="demo"
-      className="relative bg-[#0a0a0a] py-12 md:py-32 overflow-hidden"
-    >
-      <div className="absolute top-0 right-0 h-[600px] w-[600px] md:h-[800px] md:w-[800px] bg-gradient-to-b from-purple-900/10 to-transparent blur-3xl opacity-50 pointer-events-none" />
+    <section id="demo" className="relative py-24 md:py-32 bg-black overflow-hidden">
+      
+      {/* Dynamic Background */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none opacity-40 mix-blend-screen" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
 
-      <div className="mx-auto flex w-full max-w-[1400px] flex-col items-center gap-12 md:gap-16 px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
+        
         <Reveal>
-          <div className="space-y-6 md:space-y-8 max-w-3xl">
-            <div className="flex items-center justify-center gap-3">
-               <span className="flex h-3 w-3 relative">
-                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                   <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-               </span>
-               <p className="text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-emerald-400">
-                Live Test
-              </p>
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-widest animate-pulse">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              System Online
             </div>
-            <h2 className="text-3xl md:text-6xl font-bold tracking-tight text-white">
-              Experience the speed
+            <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter mb-6">
+              Test the <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">Speed</span>.
             </h2>
-            <p className="mx-auto text-base md:text-lg text-slate-400 leading-relaxed">
-              Don't just take our word for it. Enter your number below. Our AI will call you immediately. It sounds human, acts fast, and doesn't take breaks.
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+              Enter your number. Our AI will call you within 10 seconds. <br />
+              Experience the latency (or lack thereof) for yourself.
             </p>
-            
-            <div className="flex flex-wrap justify-center gap-4 md:gap-8 pt-6 border-t border-white/5">
-                <div className="flex items-center gap-3 md:gap-4">
-                    <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                        <span className="text-xs md:text-sm font-bold text-white">1</span>
-                    </div>
-                    <span className="text-sm md:text-base text-slate-300">Fill the form</span>
-                </div>
-                <div className="hidden sm:block text-slate-600">→</div>
-                <div className="flex items-center gap-3 md:gap-4">
-                    <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                        <span className="text-xs md:text-sm font-bold text-white">2</span>
-                    </div>
-                    <span className="text-sm md:text-base text-slate-300">Receive a call instantly</span>
-                </div>
-            </div>
           </div>
         </Reveal>
 
-        <Reveal delay={140}>
-          <div className="glass-card relative w-full max-w-2xl rounded-3xl border border-white/10 bg-white/5 p-6 md:p-10 shadow-[0_0_80px_rgba(124,58,237,0.15)] backdrop-blur-3xl">
-            <form className="space-y-5 md:space-y-6 text-left" onSubmit={handleSubmit}>
-              <div className="grid gap-5 md:gap-6 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <label className="block text-xs md:text-sm font-medium text-slate-300 uppercase">Full name *</label>
-                  <input
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    required
-                    className="w-full rounded-xl border border-white/10 bg-black/60 px-4 py-3 md:px-5 md:py-4 text-sm md:text-base text-slate-100 outline-none ring-blue-500/20 focus:border-blue-400 focus:ring-2 transition-all"
-                    placeholder="Jordan Good"
-                  />
+        <Reveal delay={100}>
+          <div className="relative">
+            {/* The "Command Center" Card */}
+            <div className="relative rounded-3xl border border-white/10 bg-[#0A0A0A]/90 backdrop-blur-xl p-8 md:p-12 shadow-2xl shadow-purple-900/20">
+              
+              {/* Card Header: Connectivity */}
+              <div className="flex justify-between items-center mb-8 border-b border-white/5 pb-6">
+                <div className="flex items-center gap-3 text-slate-400">
+                  <div className="p-2 rounded-lg bg-white/5">
+                    <Wifi className="w-5 h-5 text-emerald-500" />
+                  </div>
+                  <span className="text-xs font-mono uppercase tracking-wider">Connection: Stable</span>
                 </div>
-                <div className="space-y-2">
-                  <label className="block text-xs md:text-sm font-medium text-slate-300 uppercase">Email *</label>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full rounded-xl border border-white/10 bg-black/60 px-4 py-3 md:px-5 md:py-4 text-sm md:text-base text-slate-100 outline-none ring-blue-500/20 focus:border-blue-400 focus:ring-2 transition-all"
-                    placeholder="you@company.com"
-                  />
+                <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
+                  <Lock className="w-3 h-3" />
+                  256-BIT ENCRYPTED
                 </div>
               </div>
 
-              <div className="grid gap-5 md:gap-6 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <label className="block text-xs md:text-sm font-medium text-slate-300 uppercase">Phone number *</label>
-                  <input
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    required
-                    className="w-full rounded-xl border border-white/10 bg-black/60 px-4 py-3 md:px-5 md:py-4 text-sm md:text-base text-slate-100 outline-none ring-blue-500/20 focus:border-blue-400 focus:ring-2 transition-all"
-                    placeholder="+1 (555) 000-0000"
-                  />
+              <form onSubmit={handleSubmit} className="space-y-8">
+                
+                {/* Inputs Grid */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Your Name</label>
+                    <input
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      required
+                      placeholder="Jordan Good"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Email Address</label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      placeholder="jordan@cornerstone.com"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-4 text-white placeholder:text-slate-600 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all"
+                    />
+                  </div>
                 </div>
+
+                {/* The Big Phone Input */}
                 <div className="space-y-2">
-                  <label className="block text-xs md:text-sm font-medium text-slate-300 uppercase">Company website</label>
-                  <input
+                  <label className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Phone Number (For the Call)</label>
+                  <div className="relative group">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <Phone className="h-5 w-5 text-slate-500 group-focus-within:text-purple-400 transition-colors" />
+                    </div>
+                    <input
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      required
+                      placeholder="+1 (555) 000-0000"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-4 py-5 text-lg text-white placeholder:text-slate-600 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 focus:shadow-[0_0_20px_rgba(147,51,234,0.1)] transition-all font-mono tracking-wide"
+                    />
+                  </div>
+                </div>
+
+                {/* Hidden/Optional Website Input */}
+                <div className="space-y-2">
+                   <label className="text-xs font-bold text-slate-500 uppercase tracking-wider ml-1">Website (Optional)</label>
+                   <input
                     value={website}
                     onChange={(e) => setWebsite(e.target.value)}
-                    className="w-full rounded-xl border border-white/10 bg-black/60 px-4 py-3 md:px-5 md:py-4 text-sm md:text-base text-slate-100 outline-none ring-blue-500/20 focus:border-blue-400 focus:ring-2 transition-all"
                     placeholder="autofuse.ai"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-300 placeholder:text-slate-700 focus:outline-none focus:border-purple-500/50 transition-all"
                   />
                 </div>
-              </div>
 
-              <button
-                type="submit"
-                disabled={!isFormValid || isLoading}
-                className={`mt-4 md:mt-6 w-full rounded-xl px-6 md:px-8 py-4 md:py-5 text-sm md:text-base font-bold text-white shadow-lg transition-all duration-300
-                    ${!isFormValid || isLoading 
-                        ? "bg-slate-800 text-slate-500 cursor-not-allowed shadow-none" 
-                        : "bg-gradient-to-r from-purple-600 to-blue-600 shadow-purple-500/30 hover:brightness-110"}`}
-              >
-                {isLoading ? "Connecting to AI..." : "Call Me Now"}
-              </button>
-
-              {status === "success" && (
-                <div className="flex items-center gap-3 rounded-lg bg-emerald-500/10 p-4 text-sm text-emerald-400 border border-emerald-500/20">
-                  <CheckCircle className="h-5 w-5" />
-                  <span>AI Agent dispatched. Check your phone.</span>
+                {/* THE BUTTON */}
+                <div className="pt-4">
+                  <button
+                    type="submit"
+                    disabled={!isFormValid || isLoading}
+                    className={`relative w-full overflow-hidden rounded-xl py-5 text-base font-bold text-white shadow-2xl transition-all duration-300
+                      ${!isFormValid || isLoading 
+                        ? "bg-slate-800 text-slate-500 cursor-not-allowed" 
+                        : "bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 bg-[length:200%_auto] hover:bg-[position:right_center] shadow-purple-500/20 hover:shadow-purple-500/40 hover:scale-[1.01]"}`
+                    }
+                  >
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      {isLoading ? (
+                        <>
+                          <Loader2 className="h-5 w-5 animate-spin" />
+                          INITIATING CALL...
+                        </>
+                      ) : (
+                        <>
+                          <Zap className="h-5 w-5 fill-white" />
+                          DEPLOY AI AGENT
+                        </>
+                      )}
+                    </span>
+                  </button>
+                  
+                  {/* Legal/Trust Text */}
+                  <p className="mt-4 text-center text-[10px] text-slate-500">
+                    By clicking "Deploy AI Agent", you agree to our <a href="/terms" className="underline hover:text-slate-300">Terms</a> & <a href="/privacy" className="underline hover:text-slate-300">Privacy Policy</a> and consent to the call being recorded for quality assurance.
+                  </p>
                 </div>
-              )}
-              {status === "error" && (
-                <p className="text-center text-sm text-rose-400">
-                  Connection failed. Please try again.
-                </p>
-              )}
-            </form>
+
+                {/* Success/Error States */}
+                {status === "success" && (
+                  <div className="flex items-center justify-center gap-2 rounded-lg bg-emerald-500/10 p-4 border border-emerald-500/20 animate-in fade-in slide-in-from-bottom-2">
+                    <CheckCircle className="h-5 w-5 text-emerald-400" />
+                    <span className="text-sm font-medium text-emerald-400">Agent dispatched. Watch your phone.</span>
+                  </div>
+                )}
+                
+                {status === "error" && (
+                  <div className="flex items-center justify-center gap-2 rounded-lg bg-red-500/10 p-4 border border-red-500/20">
+                    <span className="text-sm font-medium text-red-400">Connection failed. Please try again.</span>
+                  </div>
+                )}
+
+              </form>
+            </div>
           </div>
         </Reveal>
       </div>
