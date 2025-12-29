@@ -903,7 +903,7 @@ const FounderSection: React.FC = () => {
                 </div>
                 <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">
                   I don't build chatbots. <br />
-                  <span className="text-slate-500">I build receptionists that never miss..</span>
+                  <span className="text-slate-500">I build receptionists that never miss.</span>
                 </h2>
                 <div className="space-y-6 text-lg text-slate-400 leading-relaxed">
                   <p>
