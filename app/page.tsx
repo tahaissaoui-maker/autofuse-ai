@@ -1033,7 +1033,7 @@ const DashboardAudioPlayer: React.FC<{ src: string }> = ({ src }) => {
 
 const FounderSection: React.FC = () => {
   return (
-    <section className="relative bg-[#050505] py-24 md:py-32 overflow-hidden border-t border-white/5">
+    <section className="relative bg-[#050505] py-12 md:py-32 overflow-hidden border-t border-white/5">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -1178,7 +1178,7 @@ const ProcessSection: React.FC = () => {
   const calUrl = "https://cal.com/taha-issaoui-g9ve4z/discovery";
 
   return (
-    <section id="process" className="relative bg-[#050505] py-24 md:py-32 overflow-hidden">
+    <section id="process" className="relative bg-[#050505] py-12 md:py-32 overflow-hidden">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 relative z-10">
         
         <Reveal>
@@ -1240,7 +1240,7 @@ const FinalCTASection: React.FC = () => {
   const calUrl = "https://cal.com/taha-issaoui-g9ve4z/discovery";
 
   return (
-    <section className="relative overflow-hidden bg-black py-24 md:py-40">
+    <section className="relative overflow-hidden bg-black py-12 md:py-40">
         
         {/* The "Warp Speed" Background */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/40 via-black to-black opacity-80" />
