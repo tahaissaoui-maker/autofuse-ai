@@ -1195,7 +1195,7 @@ const SiteFooter: React.FC = () => {
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
           
           {/* --- UPDATED LOGO SECTION --- */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-0">
             <div className="relative h-8 w-8 transition-transform hover:scale-105">
                <Image 
                  src="/header-logo.png" 
