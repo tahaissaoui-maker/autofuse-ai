@@ -472,7 +472,7 @@ const MissedMoneySection: React.FC = () => {
 
 const ServicesSplitSection: React.FC = () => {
   return (
-    <section id="services" className="relative py-24 md:py-32 bg-[#050505] overflow-hidden">
+    <section id="services" className="relative py-12 md:py-32 bg-[#050505] overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none" />
@@ -624,7 +624,7 @@ const LiveDemoSection: React.FC = () => {
   };
 
   return (
-    <section id="demo" className="relative py-24 md:py-32 bg-black overflow-hidden">
+    <section id="demo" className="relative py-12 md:py-32 bg-black overflow-hidden">
       
       {/* Dynamic Background */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none opacity-40 mix-blend-screen" />
@@ -854,7 +854,7 @@ const CaseStudiesSection: React.FC = () => {
   ];
 
   return (
-    <section id="case-studies" className="relative bg-[#030303] py-24 md:py-40 overflow-hidden">
+    <section id="case-studies" className="relative bg-[#030303] py-12 md:py-40 overflow-hidden">
       
       {/* Abstract Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
