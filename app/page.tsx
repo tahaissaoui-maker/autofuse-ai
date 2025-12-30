@@ -14,9 +14,12 @@ import {
   ArrowUpRight, 
   TrendingUp,
   User, 
-  Play,
+  Users,     // New
+  Clock,     // New
+  Database,  // New
+  Play, 
   Pause,
-  TrendingDown, 
+  TrendingDown,
   AlertTriangle,
   Landmark, 
   Home, 
@@ -25,10 +28,10 @@ import {
   Lock,
   Loader2,
   Wifi,
-  Building2,
-  Menu,
-  X,
-  Volume2,
+  Building2, 
+  Menu, 
+  X, 
+  Volume2, 
   MoreVertical,
   Trophy
 } from "lucide-react";
@@ -468,63 +471,115 @@ const MissedMoneySection: React.FC = () => {
 };
 
 const ServicesSplitSection: React.FC = () => {
-    return (
-      <section id="services" className="relative py-10 md:py-12 bg-[#0a0a0a]">
-        <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div className="text-center mb-12 md:mb-20 space-y-6">
-               <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white">Total Voice Coverage</h2>
-               <p className="text-slate-400 text-base md:text-lg max-w-3xl mx-auto">
-                   Most agencies only do one. We build complete voice autonomy for your business.
-               </p>
+  return (
+    <section id="services" className="relative py-24 md:py-32 bg-[#050505] overflow-hidden">
+      {/* Background Ambience */}
+      <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+
+        {/* Section Header */}
+        <Reveal>
+          <div className="text-center mb-16 md:mb-24 max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-6">
+              Complete <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Voice Autonomy</span>
+            </h2>
+            <p className="text-lg text-slate-400 leading-relaxed">
+              We don't just "answer phones". We deploy intelligent agents that handle your entire revenue cycle, from the first ring to the signed contract.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
+
+          {/* Card 1: Inbound (Blue Theme) */}
+          <Reveal delay={100}>
+            <div className="group relative h-full rounded-[2.5rem] border border-white/10 bg-[#0A0A0A] p-8 md:p-12 overflow-hidden transition-all duration-500 hover:border-blue-500/50 hover:shadow-[0_0_60px_rgba(59,130,246,0.1)]">
+              {/* Hover Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              <div className="relative z-10">
+                {/* Icon Header */}
+                <div className="flex justify-between items-start mb-10">
+                  <div className="h-16 w-16 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform duration-500 shadow-[0_0_20px_rgba(59,130,246,0.2)]">
+                    <PhoneIncoming className="h-8 w-8" />
+                  </div>
+                  <div className="px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-xs font-mono font-bold text-blue-300 uppercase tracking-widest">
+                    Receptionist
+                  </div>
+                </div>
+
+                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Inbound Operations</h3>
+                <p className="text-slate-400 text-base leading-relaxed mb-10 border-l-2 border-white/10 pl-4">
+                  Never put a customer on hold again. The AI answers immediately, handles complex scheduling, and syncs directly with your CRM.
+                </p>
+
+                {/* Feature List */}
+                <ul className="space-y-4">
+                  <li className="flex items-center gap-4 text-slate-300">
+                    <div className="p-1 rounded-full bg-blue-500/20 text-blue-400"><Clock className="h-4 w-4" /></div>
+                    <span className="font-medium">24/7/365 Instant Availability</span>
+                  </li>
+                  <li className="flex items-center gap-4 text-slate-300">
+                    <div className="p-1 rounded-full bg-blue-500/20 text-blue-400"><Zap className="h-4 w-4" /></div>
+                    <span className="font-medium">Zero-Latency Conversation</span>
+                  </li>
+                  <li className="flex items-center gap-4 text-slate-300">
+                    <div className="p-1 rounded-full bg-blue-500/20 text-blue-400"><Database className="h-4 w-4" /></div>
+                    <span className="font-medium">Real-time CRM Data Sync</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </Reveal>
-  
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-            <Reveal delay={100}>
-                <div className="group relative h-full rounded-[24px] md:rounded-[32px] border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-8 md:p-12 hover:border-blue-500/30 transition-all duration-500">
-                    <div className="mb-6 md:mb-8 inline-flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-2xl bg-blue-500/10 text-blue-400">
-                        <PhoneIncoming className="h-6 w-6 md:h-8 w-8" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Inbound Receptionist</h3>
-                    <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8">
-                        Never put a customer on hold again. The AI answers immediately, answers FAQs, checks your calendar availability, and books appointments directly into your schedule.
-                    </p>
-                    <ul className="space-y-4 md:space-y-5">
-                        <li className="flex items-center gap-3 md:gap-4 text-sm md:text-base text-slate-300">
-                            <CheckCircle className="h-5 w-5 md:h-6 md:w-6 text-blue-500" /> 24/7 Availability
-                        </li>
-                        <li className="flex items-center gap-3 md:gap-4 text-sm md:text-base text-slate-300">
-                            <CheckCircle className="h-5 w-5 md:h-6 md:w-6 text-blue-500" /> Instant Scheduling
-                        </li>
-                    </ul>
-                </div>
-            </Reveal>
 
-            <Reveal delay={200}>
-                <div className="group relative h-full rounded-[24px] md:rounded-[32px] border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-8 md:p-12 hover:border-purple-500/30 transition-all duration-500">
-                    <div className="mb-6 md:mb-8 inline-flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-2xl bg-purple-500/10 text-purple-400">
-                        <PhoneOutgoing className="h-6 w-6 md:h-8 w-8" />
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 md:mb-4">Outbound Sales</h3>
-                    <p className="text-slate-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8">
-                        Turn old leads into new cash. The AI calls your database, qualifies interest, reactivates dormant customers, and transfers hot leads to your team.
-                    </p>
-                    <ul className="space-y-4 md:space-y-5">
-                        <li className="flex items-center gap-3 md:gap-4 text-sm md:text-base text-slate-300">
-                            <CheckCircle className="h-5 w-5 md:h-6 md:w-6 text-purple-500" /> Lead Reactivation
-                        </li>
-                        <li className="flex items-center gap-3 md:gap-4 text-sm md:text-base text-slate-300">
-                            <CheckCircle className="h-5 w-5 md:h-6 md:w-6 text-purple-500" /> Speed-to-Lead (Under 1 min)
-                        </li>
-                    </ul>
+          {/* Card 2: Outbound (Purple Theme) */}
+          <Reveal delay={200}>
+            <div className="group relative h-full rounded-[2.5rem] border border-white/10 bg-[#0A0A0A] p-8 md:p-12 overflow-hidden transition-all duration-500 hover:border-purple-500/50 hover:shadow-[0_0_60px_rgba(168,85,247,0.1)]">
+              {/* Hover Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              <div className="relative z-10">
+                {/* Icon Header */}
+                <div className="flex justify-between items-start mb-10">
+                  <div className="h-16 w-16 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform duration-500 shadow-[0_0_20px_rgba(168,85,247,0.2)]">
+                    <PhoneOutgoing className="h-8 w-8" />
+                  </div>
+                  <div className="px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/5 text-xs font-mono font-bold text-purple-300 uppercase tracking-widest">
+                    Sales Team
+                  </div>
                 </div>
-            </Reveal>
-          </div>
+
+                <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">Outbound Reactivation</h3>
+                <p className="text-slate-400 text-base leading-relaxed mb-10 border-l-2 border-white/10 pl-4">
+                  Turn dead leads into cash. The AI calls your old database, qualifies interest, and transfers hot leads to your closers live.
+                </p>
+
+                {/* Feature List */}
+                <ul className="space-y-4">
+                  <li className="flex items-center gap-4 text-slate-300">
+                    <div className="p-1 rounded-full bg-purple-500/20 text-purple-400"><Users className="h-4 w-4" /></div>
+                    <span className="font-medium">Lead Database Reactivation</span>
+                  </li>
+                  <li className="flex items-center gap-4 text-slate-300">
+                    <div className="p-1 rounded-full bg-purple-500/20 text-purple-400"><Zap className="h-4 w-4" /></div>
+                    <span className="font-medium">Sub-1 Minute Speed-to-Lead</span>
+                  </li>
+                  <li className="flex items-center gap-4 text-slate-300">
+                    <div className="p-1 rounded-full bg-purple-500/20 text-purple-400"><CheckCircle2 className="h-4 w-4" /></div>
+                    <span className="font-medium">Intelligent Lead Qualification</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </Reveal>
+
         </div>
-      </section>
-    );
-  };
+      </div>
+    </section>
+  );
+};
 
 const LiveDemoSection: React.FC = () => {
   const [fullName, setFullName] = useState("");
