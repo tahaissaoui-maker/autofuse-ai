@@ -1193,14 +1193,22 @@ const SiteFooter: React.FC = () => {
     <footer className="border-t border-white/5 bg-black py-8 md:py-12">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+          
+          {/* --- UPDATED LOGO SECTION --- */}
           <div className="flex items-center gap-3">
-            <div className="flex h-7 w-7 md:h-8 md:w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-purple-500 to-blue-500">
-              <Phone className="h-3 w-3 md:h-4 md:w-4 text-white" />
+            <div className="relative h-8 w-8 transition-transform hover:scale-105">
+               <Image 
+                 src="/header-logo.png" 
+                 alt="AutoFuse AI Logo"
+                 fill
+                 className="object-contain"
+               />
             </div>
             <span className="text-sm md:text-base font-bold text-slate-200">
               AutoFuse AI
             </span>
           </div>
+          {/* --------------------------- */}
 
           <div className="flex gap-6 text-sm font-medium text-slate-400">
             <a href="/privacy" className="hover:text-white transition-colors">
