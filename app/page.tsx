@@ -13,6 +13,9 @@ import {
   ArrowRight, 
   ArrowUpRight, 
   TrendingUp,
+  FileSearch, // New
+  Workflow,   // New
+  Rocket,
   User, 
   Users,     // New
   Clock,     // New
@@ -349,7 +352,7 @@ const MissedMoneySection: React.FC = () => {
   const annualRevenueLost = monthlyRevenueLost * 12;
 
   return (
-    <section id="calculator" className="relative py-24 md:py-32 bg-[#050505]">
+    <section id="calculator" className="relative py-12 md:py-32 bg-[#050505]">
       {/* Background Glow for danger vibe */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-900/10 blur-[120px] rounded-full pointer-events-none" />
 
@@ -1148,58 +1151,81 @@ const ProcessSection: React.FC = () => {
   const steps = [
     {
       num: "01",
-      title: "Discovery",
-      desc: "We analyze your current call flow. We identify where you are leaking revenue and map out the solution.",
+      icon: <FileSearch className="w-6 h-6 text-blue-400" />,
+      title: "Analysis",
+      desc: "We look at your current call process. We identify exactly where you are losing leads and design the perfect solution.",
+      border: "hover:border-blue-500/50",
+      glow: "group-hover:shadow-blue-900/20"
     },
     {
       num: "02",
-      title: "Development",
-      desc: "We build your custom voice agent using Retell AI. We script the logic, clone the voice, and integrate it with your CRM.",
+      icon: <Workflow className="w-6 h-6 text-purple-400" />,
+      title: "Build",
+      desc: "We build your custom AI agent. We create the script, clone the voice, and connect it directly to your calendar and CRM.",
+      border: "hover:border-purple-500/50",
+      glow: "group-hover:shadow-purple-900/20"
     },
     {
       num: "03",
-      title: "Deployment",
-      desc: "We go live. Your AI starts answering calls, booking deals, and qualifying leads 24/7.",
+      icon: <Rocket className="w-6 h-6 text-emerald-400" />,
+      title: "Launch",
+      desc: "We go live. Your AI starts answering calls, qualifying prospects, and booking appointments 24/7. You just watch the results.",
+      border: "hover:border-emerald-500/50",
+      glow: "group-hover:shadow-emerald-900/20"
     },
   ];
 
   const calUrl = "https://cal.com/taha-issaoui-g9ve4z/discovery";
 
   return (
-    <section id="process" className="relative bg-[#0a0a0a] py-12 md:py-32">
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+    <section id="process" className="relative bg-[#050505] py-24 md:py-32 overflow-hidden">
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 relative z-10">
+        
         <Reveal>
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-20 gap-6 md:gap-8">
-                <div className="max-w-2xl">
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-white mb-4 md:mb-6">
-                        Simple Integration
-                    </h2>
-                    <p className="text-slate-400 text-base md:text-lg">
-                        We handle the technical heavy lifting. You just enjoy the extra capacity.
-                    </p>
-                </div>
-                <a
-                    href={calUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group flex items-center gap-3 text-base font-bold text-purple-400 hover:text-purple-300 transition-colors"
-                >
-                    Start the process <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </a>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-24 gap-8">
+            <div className="max-w-2xl">
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+                How It <span className="text-slate-500">Works</span>
+              </h2>
+              <p className="text-slate-400 text-lg leading-relaxed">
+                We keep it simple. From our first call to your first AI booking in less than <span className="text-white font-bold">72 hours.</span>
+              </p>
             </div>
+            <a
+                href={calUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="hidden md:flex items-center gap-3 text-sm font-bold text-slate-400 hover:text-white transition-colors border-b border-transparent hover:border-white pb-1"
+            >
+                Start the process <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
         </Reveal>
 
-        <div className="grid gap-8 md:gap-10 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-3">
           {steps.map((step, i) => (
             <Reveal key={step.num} delay={i * 100}>
-                <div className="relative group h-full">
-                    <div className="absolute -inset-0.5 rounded-[24px] md:rounded-[32px] bg-gradient-to-r from-purple-500/20 to-blue-500/20 opacity-0 group-hover:opacity-100 transition duration-500 blur-lg" />
-                    <div className="relative flex flex-col h-full rounded-[24px] md:rounded-[32px] border border-white/10 bg-black p-8 md:p-10 hover:border-white/20 transition-colors">
-                        <div className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-slate-700 to-black mb-6 md:mb-8">
-                            {step.num}
+                <div className={`group relative h-full rounded-[2rem] border border-white/10 bg-[#0A0A0A] p-8 transition-all duration-500 hover:-translate-y-2 ${step.border} ${step.glow}`}>
+                    
+                    {/* Giant Number Background */}
+                    <div className="absolute right-4 top-4 text-8xl font-bold text-white/[0.03] select-none pointer-events-none group-hover:text-white/[0.05] transition-colors">
+                        {step.num}
+                    </div>
+
+                    <div className="relative z-10 flex flex-col h-full">
+                        <div className="mb-6 p-3 w-fit rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm">
+                            {step.icon}
                         </div>
-                        <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4">{step.title}</h3>
-                        <p className="text-sm md:text-base text-slate-400 leading-relaxed">{step.desc}</p>
+                        
+                        <h3 className="text-xl font-bold text-white mb-4">{step.title}</h3>
+                        <p className="text-sm text-slate-400 leading-relaxed mb-8">
+                            {step.desc}
+                        </p>
+
+                        <div className="mt-auto pt-6 border-t border-white/5 flex items-center gap-2 text-xs font-mono text-slate-500 uppercase tracking-widest">
+                            <span>Step {step.num}</span>
+                            <div className="flex-1 h-px bg-white/10" />
+                        </div>
                     </div>
                 </div>
             </Reveal>
@@ -1214,27 +1240,37 @@ const FinalCTASection: React.FC = () => {
   const calUrl = "https://cal.com/taha-issaoui-g9ve4z/discovery";
 
   return (
-    <section className="relative overflow-hidden bg-black py-16 md:py-40 border-t border-white/5">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-black" />
+    <section className="relative overflow-hidden bg-black py-24 md:py-40">
         
-      <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+        {/* The "Warp Speed" Background */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/40 via-black to-black opacity-80" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-20" />
+        
+      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>
-          <div className="space-y-8 md:space-y-10">
-            <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold tracking-tight text-white">
-              Ready to automate?
+          <div className="space-y-10">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white">
+              Ready to <span className="text-transparent bg-clip-text bg-gradient-to-b from-purple-400 to-purple-600">Grow?</span>
             </h2>
-            <p className="mx-auto max-w-3xl text-base md:text-xl text-slate-400">
-              Join the businesses using AutoFuse AI to capture every lead, 24/7.
+            <p className="mx-auto max-w-2xl text-lg md:text-xl text-slate-400 leading-relaxed">
+              Join the businesses using AutoFuse AI to answer every call and close more deals.
             </p>
-            <div className="flex flex-col items-center gap-6 pt-6 sm:flex-row sm:justify-center">
+            
+            <div className="flex flex-col items-center gap-6 pt-8">
               <a
                 href={calUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="neon-button inline-flex h-14 md:h-16 w-full sm:w-auto min-w-[200px] md:min-w-[240px] items-center justify-center rounded-full px-8 md:px-12 text-sm md:text-base font-bold text-slate-950 transition-transform hover:scale-105"
+                className="relative group"
               >
-                Book Your Free Audit
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur opacity-40 group-hover:opacity-100 transition duration-200" />
+                <button className="relative px-12 py-5 bg-white text-black rounded-full text-lg font-bold tracking-wide transition-transform group-hover:scale-[1.02] active:scale-[0.98]">
+                    Book Your Free Audit
+                </button>
               </a>
+              <p className="text-xs text-slate-600 uppercase tracking-widest">
+                  No commitment required • 15-Min Intro Call
+              </p>
             </div>
           </div>
         </Reveal>
